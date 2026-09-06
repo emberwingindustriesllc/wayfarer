@@ -1,10 +1,12 @@
 node_modules/
+.next/
 .vercel/
 .supabase/
 *.db
 *.sqlite
 .env
 .env.local
+scratch/
 *.png
 *.jpg
 *.woff

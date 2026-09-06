@@ -1,0 +1,140 @@
+/* The Wayfarer's Journey - Global Design System */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-space: #090a10;
+  --bg-primary: #0f111a;
+  --bg-secondary: #171a27;
+  --bg-card: #1f2335;
+  --bg-card-hover: #262b41;
+  --bg-translucent: rgba(23, 26, 39, 0.85);
+
+  --text-primary: #f3f4f6;
+  --text-secondary: #9ca3af;
+  --text-muted: #6b7280;
+
+  --accent-gold: #e5b974;
+  --accent-gold-soft: rgba(229, 185, 116, 0.15);
+  --accent-amber: #f59e0b;
+  --accent-blue: #60a5fa;
+  --accent-teal: #2dd4bf;
+  --accent-rose: #fb7185;
+  --accent-emerald: #34d399;
+  --accent-purple: #c084fc;
+
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-gold: rgba(229, 185, 116, 0.35);
+
+  --glow-gold: 0 0 24px rgba(229, 185, 116, 0.25);
+  --glow-fire: 0 0 35px rgba(245, 158, 11, 0.35);
+  --shadow-elevation: 0 10px 30px -10px rgba(0, 0, 0, 0.6);
+
+  --font-serif: 'Cinzel', 'Crimson Pro', serif;
+  --font-reading: 'Crimson Pro', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  min-height: 100%;
+  background-color: var(--bg-space);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  overscroll-behavior-y: none;
+}
+
+/* Portrait Device Container */
+.portrait-container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-primary);
+  position: relative;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.7);
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@media (min-width: 640px) {
+  .portrait-container {
+    border-left: 1px solid var(--border-subtle);
+    border-right: 1px solid var(--border-subtle);
+  }
+}
+
+/* Typography Utility */
+.font-cinzel {
+  font-family: var(--font-serif);
+}
+
+.font-reading {
+  font-family: var(--font-reading);
+}
+
+/* Animations */
+@keyframes pulseGentle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+    filter: drop-shadow(0 0 15px rgba(229, 185, 116, 0.4));
+  }
+}
+
+.animate-pulse-gentle {
+  animation: pulseGentle 3s ease-in-out infinite;
+}
+
+@keyframes floatSoft {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-soft {
+  animation: floatSoft 4s ease-in-out infinite;
+}
+
+@keyframes breathGlow {
+  0%, 100% {
+    transform: scale(0.92);
+    box-shadow: 0 0 15px rgba(96, 165, 250, 0.2);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 45px rgba(96, 165, 250, 0.5);
+  }
+}
+
+.animate-breath {
+  animation: breathGlow 8s ease-in-out infinite;
+}
+
+/* Smooth Scrollbars */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+}
