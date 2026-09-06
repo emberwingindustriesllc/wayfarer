@@ -1,0 +1,11 @@
+node_modules/
+.vercel/
+.supabase/
+*.db
+*.sqlite
+.env
+.env.local
+*.png
+*.jpg
+*.woff
+*.woff2
