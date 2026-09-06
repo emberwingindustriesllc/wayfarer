@@ -1,0 +1,13 @@
+{
+  "name": "the-wayfarers-journey",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A narrative RPG about internal conflict resolution and emotional fortitude",
+  "scripts": {
+    "dev": "npx serve . -l 3000",
+    "build": "echo 'Ready for deployment'",
+    "start": "npx serve ."
+  },
+  "keywords": ["rpg", "narrative", "mental-health", "journey"],
+  "license": "MIT"
+}

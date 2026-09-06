@@ -1,0 +1,8 @@
+{
+  "name": "the-wayfarers-journey",
+  "regions": ["iad1", "sfo1"],
+  "framework": "static",
+  "routes": [
+    {"src": "/.*", "dest": "/index.html"}
+  ]
+}
