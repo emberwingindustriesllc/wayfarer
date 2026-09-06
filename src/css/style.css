@@ -1,0 +1,286 @@
+/* The Wayfarer's Journey - Game Styles */
+
+:root {
+    --bg-primary: #1a1a2e;
+    --bg-secondary: #16213e;
+    --bg-card: #0f3460;
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0b0;
+    --accent-gold: #d4a574;
+    --accent-teal: #4ecdc4;
+    --accent-coral: #ff6b6b;
+    --accent-purple: #a78bfa;
+    --border-color: #2a2a4a;
+    --shadow: rgba(0, 0, 0, 0.4);
+    --glow-gold: rgba(212, 165, 116, 0.3);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Loading Screen */
+#loading-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+}
+
+.wayfarer-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+#loading-screen h1 {
+    font-family: 'Crimson Text', serif;
+    font-size: 2rem;
+    color: var(--accent-gold);
+    margin-bottom: 0.5rem;
+}
+
+#loading-screen p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Game Header */
+#game-header {
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.stat-bar {
+    margin-bottom: 0.5rem;
+}
+
+.stat-bar:last-child {
+    margin-bottom: 0;
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.25rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bar-fill {
+    height: 8px;
+    background: var(--bg-card);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.bar-fill::after {
+    content: '';
+    display: block;
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease;
+}
+
+#resilience-fill {
+    background: linear-gradient(90deg, var(--accent-coral), var(--accent-teal));
+}
+
+#wisdom-fill {
+    background: linear-gradient(90deg, var(--accent-purple), var(--accent-gold));
+}
+
+/* Game Content */
+#game-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+/* Challenge Card */
+.challenge-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.challenge-card h2 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.4rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+}
+
+.challenge-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+/* Choice Buttons */
+.choice-btn {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: left;
+}
+
+.choice-btn:hover {
+    border-color: var(--accent-gold);
+    background: rgba(212, 165, 116, 0.1);
+    transform: translateX(4px);
+}
+
+.choice-btn:active {
+    transform: translateX(2px);
+}
+
+.choice-btn .choice-label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+.choice-btn .choice-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Rest Area */
+.rest-area {
+    text-align: center;
+    padding: 2rem;
+}
+
+.rest-area h2 {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.8rem;
+    color: var(--accent-gold);
+    margin-bottom: 1rem;
+}
+
+.rest-area .campsite {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 2rem;
+    background: radial-gradient(circle, var(--accent-gold) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: pulse-glow 2s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px var(--glow-gold); }
+    50% { box-shadow: 0 0 40px var(--glow-gold), 0 0 60px rgba(212, 165, 116, 0.2); }
+}
+
+/* Buttons */
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-gold), var(--accent-teal));
+    color: var(--bg-primary);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--accent-gold);
+    border: 1px solid var(--accent-gold);
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.btn-secondary:hover {
+    background: rgba(212, 165, 116, 0.1);
+}
+
+/* Footer */
+#game-footer {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem;
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+}
+
+#game-footer .btn-secondary {
+    flex: 1;
+}
+
+/* Scripture Display */
+.scripture {
+    background: rgba(167, 139, 250, 0.1);
+    border-left: 3px solid var(--accent-purple);
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+    #app {
+        max-width: 600px;
+    }
+}
+
+/* Animations */
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

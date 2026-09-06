@@ -1,0 +1,83 @@
+{
+    "grief": {
+        "title": "The Arc of Grief",
+        "description": "Every journey through loss teaches us about resilience.",
+        "scripture": "\u201cFor we know that if the tent that is our earthly home is destroyed, we indeed have a building from God\u2026\u201d \u2014 2 Corinthians 5:1",
+        "challenges": [
+            {
+                "id": "grief_1",
+                "title": "The First Wave",
+                "description": "You receive news of a friend's passing. The world feels heavy.",
+                "choices": [
+                    { "label": "React and cry", "desc": "Feel it fully, but resilience drains more", "resilienceCost": 15, "wisdomGain": 5 },
+                    { "label": "Pray and reflect", "desc": "Turn to scripture for comfort", "resilienceCost": 5, "wisdomGain": 10, "faithGain": 3 },
+                    { "label": "Suppress the feeling", "desc": "Push it aside for later", "resilienceCost": 0, "wisdomGain": 0, "resiliencePenalty": 10 }
+                ]
+            },
+            {
+                "id": "grief_2",
+                "title": "The Long Silence",
+                "description": "Days pass and the grief doesn't ease. You wonder if you'll ever feel like yourself again.",
+                "choices": [
+                    { "label": "Reach out to someone", "desc": "Share what you're going through", "resilienceCost": 5, "wisdomGain": 8, "communityGain": 5 },
+                    { "label": "Sit with it alone", "desc": "Let the waves come and go", "resilienceCost": 10, "wisdomGain": 12, "patienceGain": 3 },
+                    { "label": "Avoid thinking about it", "desc": "Keep busy to distract yourself", "resilienceCost": 0, "wisdomGain": 0, "resiliencePenalty": 15 }
+                ]
+            }
+        ]
+    },
+    "work": {
+        "title": "The Arc of Work",
+        "description": "Professional challenges test your patience and self-worth.",
+        "scripture": "\u201cDo not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.\u201d \u2014 Philippians 4:6",
+        "challenges": [
+            {
+                "id": "work_1",
+                "title": "Conflict at Work",
+                "description": "A difficult conversation with a colleague threatens to escalate.",
+                "choices": [
+                    { "label": "React defensively", "desc": "Lash out in the moment", "resilienceCost": 20, "wisdomGain": 0 },
+                    { "label": "Be slow to speak", "desc": "Listen first, respond with wisdom", "resilienceCost": 5, "wisdomGain": 15, "patienceGain": 3 },
+                    { "label": "Walk away", "desc": "Remove yourself temporarily", "resilienceCost": 2, "wisdomGain": 2 }
+                ]
+            },
+            {
+                "id": "work_2",
+                "title": "Sense of Failure",
+                "description": "A project didn't go as planned. You can't help but wonder if you're enough.",
+                "choices": [
+                    { "label": "Blame yourself", "desc": "Internalize the failure", "resilienceCost": 15, "wisdomGain": 0, "communityGain": -3 },
+                    { "label": "Identify what you learned", "desc": "Extract wisdom from the setback", "resilienceCost": 5, "wisdomGain": 18, "patienceGain": 5 },
+                    { "label": "Seek counsel", "desc": "Talk to a mentor or trusted colleague", "resilienceCost": 3, "wisdomGain": 10, "communityGain": 8 }
+                ]
+            }
+        ]
+    },
+    "self": {
+        "title": "The Arc of Self",
+        "description": "Nourishing your inner life is not optional \u2014 it is essential.",
+        "scripture": "\u201cBut let your inner self be renewed by the Spirit.\u201d \u2014 Romans 12:2",
+        "challenges": [
+            {
+                "id": "self_1",
+                "title": "Morning Reflection",
+                "description": "A moment to center yourself before the day begins.",
+                "choices": [
+                    { "label": "Skip it", "desc": "Jump straight into the day", "resilienceCost": 0, "wisdomGain": 0 },
+                    { "label": "Three deep breaths", "desc": "A simple grounding practice", "resilienceCost": 0, "resilienceGain": 5, "patienceGain": 2 },
+                    { "label": "Write gratitude list", "desc": "Three things you're thankful for", "resilienceCost": 0, "wisdomGain": 8, "communityGain": 2 }
+                ]
+            },
+            {
+                "id": "self_2",
+                "title": "Anxiety Wave",
+                "description": "Your heart races and your mind races with worst-case scenarios.",
+                "choices": [
+                    { "label": "Fight the anxiety", "desc": "Try to force it away", "resilienceCost": 10, "wisdomGain": 2 },
+                    { "label": "Breathe and observe", "desc": "Let it pass like a cloud", "resilienceCost": 3, "resilienceGain": 8, "patienceGain": 5 },
+                    { "label": "Reach out to someone", "desc": "Let a friend know you're struggling", "resilienceCost": 2, "wisdomGain": 5, "communityGain": 10 }
+                ]
+            }
+        ]
+    }
+}
