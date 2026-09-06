@@ -1,7 +1,7 @@
 {
   "name": "the-wayfarers-journey",
   "regions": ["iad1", "sfo1"],
-  "framework": "static",
+  "framework": "nextjs",
   "routes": [
     {"src": "/.*", "dest": "/index.html"}
   ]
