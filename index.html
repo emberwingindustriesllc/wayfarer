@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a2e">
+    <title>The Wayfarer's Journey</title>
+    <link rel="stylesheet" href="src/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <div id="loading-screen">
+            <div class="wayfarer-icon">&#128332;</div>
+            <h1>The Wayfarer's Journey</h1>
+            <p>Preparing your pilgrimage...</p>
+        </div>
+        
+        <div id="game-screen" style="display:none;">
+            <header id="game-header">
+                <div class="stat-bar">
+                    <span class="stat-label">Resilience <span id="resilience-val">100</span></span>
+                    <div class="bar-fill" id="resilience-fill"></div>
+                </div>
+                <div class="stat-bar">
+                    <span class="stat-label">Wisdom <span id="wisdom-val">0</span></span>
+                    <div class="bar-fill" id="wisdom-fill"></div>
+                </div>
+            </header>
+            
+            <main id="game-content">
+                <!-- Dynamic content injected here -->
+            </main>
+            
+            <footer id="game-footer">
+                <button id="rest-btn" class="btn-secondary">Rest Area</button>
+                <button id="journal-btn" class="btn-secondary">Journal</button>
+            </footer>
+        </div>
+    </div>
+    
+    <script type="module" src="src/js/game.js"></script>
+</body>
+</html>
