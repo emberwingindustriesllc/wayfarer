@@ -4,10 +4,24 @@
   "private": true,
   "description": "A narrative RPG about internal conflict resolution and emotional fortitude",
   "scripts": {
-    "dev": "npx serve . -l 3000",
-    "build": "echo 'Ready for deployment'",
-    "start": "npx serve ."
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
-  "keywords": ["rpg", "narrative", "mental-health", "journey"],
+  "dependencies": {
+    "next": "^14.2.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "@supabase/ssr": "^0.5.0",
+    "@supabase/supabase-js": "^2.40.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.0"
+  },
+  "keywords": ["rpg", "narrative", "mental-health", "journey", "supabase"],
   "license": "MIT"
 }
