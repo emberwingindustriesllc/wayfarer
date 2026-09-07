@@ -17,11 +17,11 @@ interface LifeCompassProps {
   wisdom: number;
 }
 
-const ARC_ICONS: Record<string, React.ReactNode> = {
-  grief: <HeartHandshake size={15} className="text-blue-400" />,
-  relationship: <ShieldCheck size={15} className="text-emerald-400" />,
-  work: <Briefcase size={15} className="text-amber-400" />,
-  self: <SunMedium size={15} className="text-pink-400" />
+const ARC_ICONS: Record<string, { icon: React.ReactNode; biome: string }> = {
+  grief: { icon: <span className="text-sm">❄️</span>, biome: 'Snowy Mountains' },
+  relationship: { icon: <span className="text-sm">🌾</span>, biome: 'Golden Savannah' },
+  work: { icon: <span className="text-sm">🏜️</span>, biome: 'Sun Desert' },
+  self: { icon: <span className="text-sm">🌲</span>, biome: 'Ancient Forest' }
 };
 
 export const LifeCompass: React.FC<LifeCompassProps> = ({
@@ -92,8 +92,9 @@ export const LifeCompass: React.FC<LifeCompassProps> = ({
                 }`}
               >
                 <div className="flex items-center justify-between mb-1">
-                  <span className="p-1 rounded-md bg-black/40">
-                    {ARC_ICONS[arc.id] || <Compass size={14} />}
+                  <span className="p-1 rounded-md bg-black/40 flex items-center space-x-1">
+                    {ARC_ICONS[arc.id]?.icon || <span>🗺️</span>}
+                    <span className="text-[9px] font-mono text-gold/90 font-medium">{ARC_ICONS[arc.id]?.biome || ''}</span>
                   </span>
                   <span className="text-[10px] font-mono text-gray-400">
                     {completedCount}/{totalCount}

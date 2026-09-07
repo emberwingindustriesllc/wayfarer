@@ -46,11 +46,15 @@ export const RestAreaView: React.FC<RestAreaViewProps> = ({
   const [isCircleVisited, setIsCircleVisited] = useState(false);
 
   useEffect(() => {
-    audio.toggleAmbientSanctuary(true);
+    if (activeTab === 'campfire') {
+      audio.toggleCampfire(true);
+    } else {
+      audio.toggleCampfire(false);
+    }
     return () => {
-      audio.toggleAmbientSanctuary(false);
+      audio.toggleCampfire(false);
     };
-  }, []);
+  }, [activeTab]);
 
   const handleCampfireRest = () => {
     const resilienceGain = Math.min(100 - stats.resilience, 25);

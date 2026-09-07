@@ -1,12 +1,16 @@
-// The Wayfarer's Journey - Enhanced Web Audio Synthesis & Retro Chiptune Engine
-// Inspired by Shovel Knight, Mega Man, Zelda & Super Mario Bros.
+// The Wayfarer's Journey - Procedural Audio & Soundscape Engine
+// Realistic Campfire with Crackling Embers, Chiptune Jingles, and Sacred Singing Bowls.
 
 class AudioManager {
   private ctx: AudioContext | null = null;
   public soundEnabled: boolean = true;
   public isUnlocked: boolean = false;
-  private ambientGain: GainNode | null = null;
-  private isAmbientPlaying: boolean = false;
+
+  // Campfire generator nodes
+  private campfireSource: AudioBufferSourceNode | null = null;
+  private campfireGain: GainNode | null = null;
+  private crackleInterval: NodeJS.Timeout | null = null;
+  public isCampfirePlaying: boolean = false;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -56,7 +60,117 @@ class AudioManager {
     }
   }
 
-  // Retro 8-bit Map Footstep (like Mario Bros / Zelda overworld step)
+  // ========================================================
+  // REALISTIC PROCEDURAL CAMPFIRE SOUND GENERATOR
+  // Emulates burning wood hiss, warm draft, and random ember crackles/pops
+  // ========================================================
+  public toggleCampfire(enable: boolean) {
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    if (!enable || !this.soundEnabled) {
+      // Fade out campfire
+      if (this.campfireGain) {
+        try {
+          this.campfireGain.gain.setValueAtTime(this.campfireGain.gain.value, ctx.currentTime);
+          this.campfireGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
+          setTimeout(() => {
+            if (this.campfireSource) {
+              try { this.campfireSource.stop(); } catch {}
+              this.campfireSource.disconnect();
+              this.campfireSource = null;
+            }
+          }, 650);
+        } catch {}
+      }
+      if (this.crackleInterval) {
+        clearInterval(this.crackleInterval);
+        this.crackleInterval = null;
+      }
+      this.isCampfirePlaying = false;
+      return;
+    }
+
+    if (this.isCampfirePlaying) return;
+
+    try {
+      const now = ctx.currentTime;
+      const bufferSize = 2 * ctx.sampleRate; // 2 seconds of loopable fire bed noise
+      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+
+      // Generate warm brown/pink noise for roaring coals
+      let lastOut = 0.0;
+      for (let i = 0; i < bufferSize; i++) {
+        const white = Math.random() * 2 - 1;
+        output[i] = (lastOut + (0.02 * white)) / 1.02;
+        lastOut = output[i];
+        output[i] *= 3.5; // Gain compensation
+      }
+
+      this.campfireSource = ctx.createBufferSource();
+      this.campfireSource.buffer = noiseBuffer;
+      this.campfireSource.loop = true;
+
+      // Filter: warm low-pass for wood combustion hum + gentle bandpass for hiss
+      const lowFilter = ctx.createBiquadFilter();
+      lowFilter.type = 'lowpass';
+      lowFilter.frequency.setValueAtTime(380, now);
+
+      this.campfireGain = ctx.createGain();
+      this.campfireGain.gain.setValueAtTime(0.001, now);
+      this.campfireGain.gain.linearRampToValueAtTime(0.25, now + 1.2);
+
+      this.campfireSource.connect(lowFilter);
+      lowFilter.connect(this.campfireGain);
+      this.campfireGain.connect(ctx.destination);
+      this.campfireSource.start(now);
+
+      // Random Wood Pops & Cracking Embers
+      const scheduleCrackle = () => {
+        if (!this.isCampfirePlaying || !this.soundEnabled) return;
+        this.playWoodPop();
+        // Next pop in random 80ms - 450ms
+        const nextTime = 80 + Math.random() * 370;
+        this.crackleInterval = setTimeout(scheduleCrackle, nextTime) as unknown as NodeJS.Timeout;
+      };
+
+      this.isCampfirePlaying = true;
+      scheduleCrackle();
+    } catch (e) {
+      console.warn('Campfire audio error:', e);
+    }
+  }
+
+  // Realistic individual wood snap / spark pop
+  private playWoodPop() {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    try {
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      // Sharp frequency drop mimicking wood snapping
+      const startFreq = 800 + Math.random() * 1200;
+      osc.type = Math.random() > 0.4 ? 'triangle' : 'sawtooth';
+      osc.frequency.setValueAtTime(startFreq, now);
+      osc.frequency.exponentialRampToValueAtTime(60 + Math.random() * 80, now + 0.035);
+
+      const popVolume = 0.04 + Math.random() * 0.12;
+      gain.gain.setValueAtTime(popVolume, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 0.04);
+    } catch {}
+  }
+
+  // ========================================================
+  // FOOTSTEPS & RETRO OVERWORLD SOUNDS
+  // ========================================================
   public playFootstep() {
     if (!this.soundEnabled) return;
     const ctx = this.getContext();
@@ -68,9 +182,9 @@ class AudioManager {
       const gain = ctx.createGain();
       osc.type = 'triangle';
       osc.frequency.setValueAtTime(160 + (Math.random() * 30), now);
-      osc.frequency.exponentialRampToValueAtTime(60, now + 0.07);
+      osc.frequency.exponentialRampToValueAtTime(50, now + 0.07);
 
-      gain.gain.setValueAtTime(0.22, now);
+      gain.gain.setValueAtTime(0.2, now);
       gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
 
       osc.connect(gain);
@@ -82,7 +196,6 @@ class AudioManager {
     } catch {}
   }
 
-  // Retro 8-bit Stage Select / Jump Fanfare (Mega Man / Shovel Knight style)
   public playEncounterStart() {
     if (!this.soundEnabled) return;
     const ctx = this.getContext();
@@ -97,7 +210,7 @@ class AudioManager {
         osc.type = 'square';
         osc.frequency.setValueAtTime(freq, now + idx * 0.06);
 
-        gain.gain.setValueAtTime(0.16, now + idx * 0.06);
+        gain.gain.setValueAtTime(0.14, now + idx * 0.06);
         gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.06 + 0.12);
 
         osc.connect(gain);
@@ -109,7 +222,6 @@ class AudioManager {
     } catch {}
   }
 
-  // Retro 8-bit Discovery / Zelda Secret Jingle
   public playZeldaSecret() {
     if (!this.soundEnabled) return;
     const ctx = this.getContext();
@@ -117,7 +229,6 @@ class AudioManager {
 
     try {
       const now = ctx.currentTime;
-      // G4, F#4, D#4, A3, G#3, E4, G#4, C5
       const notes = [392.00, 369.99, 311.13, 220.00, 207.65, 329.63, 415.30, 523.25];
       notes.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
@@ -137,7 +248,9 @@ class AudioManager {
     } catch {}
   }
 
-  // Sacred Singing Bowl / Meditative Chime tone
+  // ========================================================
+  // SACRED SINGING BOWLS & CHIMES
+  // ========================================================
   public playChime(freq: number = 432, duration: number = 2.5) {
     if (!this.soundEnabled) return;
     const ctx = this.getContext();
@@ -173,7 +286,6 @@ class AudioManager {
     } catch {}
   }
 
-  // Encouraging warm chord
   public playGraceChord() {
     if (!this.soundEnabled) return;
     this.playChime(396, 2.2);
@@ -226,45 +338,6 @@ class AudioManager {
       gain.connect(ctx.destination);
       osc.start(now);
       osc.stop(now + 4.0);
-    } catch {}
-  }
-
-  public toggleAmbientSanctuary(enable: boolean) {
-    const ctx = this.getContext();
-    if (!ctx) return;
-
-    if (!enable || !this.soundEnabled) {
-      if (this.ambientGain) {
-        try {
-          this.ambientGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.8);
-        } catch {}
-      }
-      this.isAmbientPlaying = false;
-      return;
-    }
-
-    if (this.isAmbientPlaying) return;
-
-    try {
-      const now = ctx.currentTime;
-      this.ambientGain = ctx.createGain();
-      this.ambientGain.gain.setValueAtTime(0.001, now);
-      this.ambientGain.gain.linearRampToValueAtTime(0.08, now + 2.0);
-      this.ambientGain.connect(ctx.destination);
-
-      const osc1 = ctx.createOscillator();
-      osc1.type = 'triangle';
-      osc1.frequency.setValueAtTime(108, now);
-      osc1.connect(this.ambientGain);
-      osc1.start(now);
-
-      const osc2 = ctx.createOscillator();
-      osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(162, now);
-      osc2.connect(this.ambientGain);
-      osc2.start(now);
-
-      this.isAmbientPlaying = true;
     } catch {}
   }
 }
