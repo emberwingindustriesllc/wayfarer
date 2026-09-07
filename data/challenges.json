@@ -2,152 +2,157 @@
   "arcs": {
     "grief": {
       "id": "grief",
-      "title": "The Arc of Grief",
-      "subtitle": "Navigating Loss & Walking Through the Valley",
-      "description": "Grief is not a problem to be solved; it is love with nowhere to go. Here, your pilgrimage teaches you that walking through sorrow requires patience, truth, and community.",
+      "title": "The Valley of Shadows",
+      "subtitle": "Loss, Lament & The Endurance of Love",
+      "description": "Grief is neither a weakness nor a puzzle to be solved—it is love surviving in the presence of an agonizing void. On this path, the Wayfarer learns that sorrow is not the enemy of faith, but its most honest furnace.",
       "themeColor": "#60a5fa",
       "icon": "HeartHandshake",
-      "scripture": "“The Lord is near to the brokenhearted and saves the crushed in spirit.” — Psalm 34:18",
+      "scripture": "“You have kept count of my tossings; put my tears in your bottle. Are they not in your book?” — Psalm 56:8",
       "challenges": [
         {
           "id": "grief_1",
-          "title": "The First Wave",
-          "subtitle": "The Weight of Sudden Absence",
-          "narrative": "A message arrives with words that shatter your day: a cherished presence in your life has passed away. The room spins, air turns thin, and the instinctive temptation is either to collapse inward or pretend you are unfazed.",
-          "scriptureAnchor": "“He heals the brokenhearted and binds up their wounds.” — Psalm 147:3",
-          "reflectionQuestion": "When sorrow strikes, do you allow yourself to grieve, or do you flee into numbness?",
+          "title": "The Shattered Morning",
+          "subtitle": "The Cold Weight of Sudden Absence",
+          "narrative": "The message arrived at dawn—words so sudden and violent they severed the day in two. Someone you loved is gone from this earth. You stand in the kitchen, the kettle whistling unnoticed on the stove, the morning air suddenly too thin to breathe. A heavy terror whispers that if you allow yourself to cry, you will dissolve and never stand upright again.",
+          "scriptureAnchor": "“Jesus wept.” — John 11:35",
+          "reflectionQuestion": "Will you honor love by feeling the sword in your chest, or will you freeze your heart in stone to survive the morning?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Suppress and Numb",
-              "desc": "Lock the door, swallow the tears, and pretend you can power through your day.",
+              "label": "The Armor of Stone",
+              "desc": "Lock the door, bite your lip until it bleeds, and refuse to weep. Throw yourself furiously into mundane chores to prove you are unbreakable.",
               "resilienceCost": 25,
               "wisdomGain": 0,
-              "reflectionOutcome": "Suppressing acute grief turns tears into subterranean poison. The pain remains unaddressed, sapping your vitality."
+              "faithGain": -2,
+              "reflectionOutcome": "You turned your heart into a fortress of stone. But stones do not heal; they only trap the poison inside until the walls crack under pressure."
             },
             {
               "archetype": "Faith",
-              "label": "Lament in Prayer",
-              "desc": "Kneel, voice your sorrow honestly to God without sugarcoating the ache, and trust Him with your broken heart.",
+              "label": "The Gethsemane Kneeling",
+              "desc": "Fall to your knees on the cold floorboards. Cry out to God without theology or pretense—lay your torn heart bare before the Man of Sorrows.",
               "resilienceCost": 8,
-              "resilienceGain": 12,
-              "wisdomGain": 15,
-              "faithGain": 8,
-              "reflectionOutcome": "Lament is not the absence of faith; it is faith breathing honestly. You acknowledge the loss while anchoring your soul to God's tender presence."
+              "resilienceGain": 14,
+              "wisdomGain": 18,
+              "faithGain": 12,
+              "reflectionOutcome": "Before the throne of God, tears are not signs of despair—they are liquid prayers. In the depth of the ache, Christ kneels with you in the dust."
             },
             {
               "archetype": "Patience",
-              "label": "Sit with the Waves",
-              "desc": "Step into quiet solitude. Acknowledge that you do not have to 'fix' this ache today; allow the tears to flow without panic.",
-              "resilienceCost": 12,
+              "label": "Stand in the Storm",
+              "desc": "Turn off the stove. Sit in the chair. Do not try to make sense of the universe today; let the dark waves wash over you without running.",
+              "resilienceCost": 10,
+              "resilienceGain": 8,
               "wisdomGain": 12,
-              "patienceGain": 6,
-              "reflectionOutcome": "By letting the waves break upon you rather than resisting them, you learn that sorrow is a season, not a permanent prison."
+              "patienceGain": 10,
+              "reflectionOutcome": "You did not flee the wave. You discovered that while sorrow bends you to the earth, the ground holds you. Endurance begins here."
             },
             {
               "archetype": "Community",
-              "label": "Call a Trusted Confidant",
-              "desc": "Pick up the phone and utter the hardest words: 'I just received devastating news, and I need someone to sit with me.'",
-              "resilienceCost": 5,
-              "wisdomGain": 10,
-              "communityGain": 10,
-              "reflectionOutcome": "Bearing grief in isolation magnifies the burden tenfold. By inviting another into your sorrow, you discover God's comfort through human hands."
+              "label": "The Trembling Voice",
+              "desc": "Pick up the phone with shaking hands. Call the one brother or sister who will not offer empty platitudes, and say: 'Sit with me. I am broken.'",
+              "resilienceCost": 6,
+              "resilienceGain": 10,
+              "wisdomGain": 14,
+              "communityGain": 15,
+              "reflectionOutcome": "Bearing grief alone doubles its gravity. By letting another human being see your naked tears, you invite God's comfort through living hands."
             }
           ]
         },
         {
           "id": "grief_2",
-          "title": "The Long Silence",
-          "subtitle": "When the World Moves On But You Haven't",
-          "narrative": "Weeks have passed. The flowers have wilted, the cards have stopped arriving, and the world rushes past at full speed. Inside, however, the silence is deafening. You wonder if you will ever laugh again without guilt.",
-          "scriptureAnchor": "“Weeping may stay for the night, but rejoicing comes in the morning.” — Psalm 30:5",
-          "reflectionQuestion": "How do you give yourself permission to heal at your own sacred pace?",
+          "title": "The Silence After",
+          "subtitle": "When the World Moves On Without You",
+          "narrative": "Three months have drifted past. The funeral casseroles have stopped coming; the sympathy cards sit stacked under dust. Outside your window, strangers laugh on the sidewalk, traffic hums, and the world marches forward as if nothing was lost. Yet inside your chest, their absence is an echo chamber. A suffocating guilt strikes whenever you catch yourself smiling.",
+          "scriptureAnchor": "“The steadfast love of the Lord never ceases; his mercies never come to an end; they are new every morning.” — Lamentations 3:22-23",
+          "reflectionQuestion": "Can you grant yourself the sacred grace to heal without feeling that healing is an act of betrayal?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Isolate in Resentment",
-              "desc": "Resent everyone going about their cheerful days; retreat into bitter withdrawal.",
-              "resilienceCost": 20,
-              "communityGain": -4,
+              "label": "The Bitter Cloister",
+              "desc": "Draw the curtains and resent the laughing strangers. Vow that joy is a betrayal of the dead, and nurse a bitter shroud.",
+              "resilienceCost": 22,
               "wisdomGain": 0,
-              "reflectionOutcome": "Resentment toward the world's momentum only locks you in a cell of your own making. It starves your soul of the grace needed to heal."
+              "communityGain": -6,
+              "reflectionOutcome": "Resentment toward the living honors neither the dead nor God. It turns a sanctuary of memory into a stagnant tomb."
             },
             {
               "archetype": "Faith",
-              "label": "Anchor in the Promise of Renewal",
-              "desc": "Read 2 Corinthians 5:1 and meditate on the eternal sanctuary being prepared beyond this earthly tent.",
-              "resilienceCost": 5,
-              "wisdomGain": 16,
-              "faithGain": 10,
-              "resilienceGain": 10,
-              "reflectionOutcome": "When earthly permanence crumbles, eternal truth becomes your rock. You remember that this chapter is not the end of the pilgrimage."
+              "label": "Entrust the Soul to Eternity",
+              "desc": "Step into the chapel or open sky. Thank God for the precious years granted, and release them into the everlasting arms of the Resurrection.",
+              "resilienceCost": 6,
+              "resilienceGain": 16,
+              "wisdomGain": 20,
+              "faithGain": 14,
+              "reflectionOutcome": "The grave is not the final chapter of the Wayfarer. In surrendering them to Christ, you discover that love is stronger than death."
             },
             {
               "archetype": "Patience",
-              "label": "Practice Gentle Micro-Routines",
-              "desc": "Do not demand monumental breakthroughs. Make your bed, drink clean water, and breathe deeply in the morning sunlight.",
-              "resilienceCost": 4,
-              "wisdomGain": 10,
-              "patienceGain": 8,
-              "resilienceGain": 6,
-              "reflectionOutcome": "Healing rarely happens in a dramatic bolt of lightning; it happens in small, faithful acts of honoring your daily breath."
+              "label": "The Small Fidelity",
+              "desc": "Do not demand a great victory today. Drink water, step into the sunlight, and wash a single cup. Let healing move at God's unhurried pace.",
+              "resilienceCost": 5,
+              "resilienceGain": 8,
+              "wisdomGain": 12,
+              "patienceGain": 12,
+              "reflectionOutcome": "Sanctification and recovery are not lightning bolts; they are seeds germinating in the dark soil. You honor life by taking your next breath."
             },
             {
               "archetype": "Community",
-              "label": "Join a Grief Support Group",
-              "desc": "Step into a circle of fellow wayfarers who also know the cadence of loss.",
-              "resilienceCost": 8,
-              "wisdomGain": 14,
+              "label": "The Fellowship of Scars",
+              "desc": "Seek out an elder or fellow wayfarer who has walked through the same valley and survived. Speak their name out loud without fear.",
+              "resilienceCost": 5,
+              "resilienceGain": 12,
+              "wisdomGain": 16,
               "communityGain": 12,
-              "reflectionOutcome": "In the fellowship of shared suffering, shame vanishes. You realize you are not broken; you are merely human, walking among companions."
+              "reflectionOutcome": "In speaking the name of the lost with those who know the ache, grief sheds its cold shame and becomes holy communion."
             }
           ]
         },
         {
           "id": "grief_3",
-          "title": "The Anniversary",
-          "subtitle": "The Calendar's Quiet Ambush",
-          "narrative": "The date on your calendar approaches like a storm front. Everyone expected you to have 'moved on' by now, yet the ache in your chest feels as acute as the day it happened.",
-          "scriptureAnchor": "“Even though I walk through the darkest valley, I will fear no evil, for you are with me; your rod and your staff, they comfort me.” — Psalm 23:4",
-          "reflectionQuestion": "What ritual of remembrance can honor both your love and your onward calling?",
+          "title": "The Ambush of the Date",
+          "subtitle": "The Calendar's Unforgiving Strike",
+          "narrative": "A notification flashes on your screen—their birthday. Suddenly, all the composure you spent months carefully rebuilding crumbles into ash. You find their old winter scarf in the hallway closet; the faint scent of cedar and wool remains. You stand with your face buried in the fabric, paralyzed by the sheer finality of time.",
+          "scriptureAnchor": "“Though the fig tree should not blossom, nor fruit be on the vines... yet I will rejoice in the Lord; I will take joy in the God of my salvation.” — Habakkuk 3:17-18",
+          "reflectionQuestion": "How will you anchor your heart when memory threatens to pull you into the abyss?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Overcompensate with Frantic Work",
-              "desc": "Schedule every minute of the day with tasks to drown out any possible moment of reflection.",
-              "resilienceCost": 22,
-              "patienceGain": -3,
-              "wisdomGain": 2,
-              "reflectionOutcome": "Running from grief is like running on a treadmill—you expend immense energy without moving an inch away from the reality."
+              "label": "The Frenzied Drowning",
+              "desc": "Stuff the calendar, drown the hours in mindless digital distraction or frantic work until 2 AM so you don't have to feel.",
+              "resilienceCost": 24,
+              "patienceGain": -4,
+              "wisdomGain": 0,
+              "reflectionOutcome": "You ran yourself into exhaustion, but running from grief only ensures it will wait for you in the shadows tomorrow."
             },
             {
               "archetype": "Faith",
-              "label": "Light a Candle and Offer Thanks",
-              "desc": "Dedicate an hour in quiet reverie. Thank God for the gift of their life and surrender the longing into His hands.",
+              "label": "The Candle of Remembrance",
+              "desc": "Light a solitary candle. Open the Psalms and offer the bittersweet ache back to God as a thank offering for having loved deeply.",
               "resilienceCost": 6,
-              "wisdomGain": 18,
-              "faithGain": 10,
-              "resilienceGain": 14,
-              "reflectionOutcome": "Transforming grief into gratitude sanctifies your memory. You honor what was lost without being devoured by despair."
+              "resilienceGain": 18,
+              "wisdomGain": 22,
+              "faithGain": 16,
+              "reflectionOutcome": "You turned the calendar date into an altar rather than an ambush. What once was an open wound is becoming a sacred monument of love."
             },
             {
               "archetype": "Patience",
-              "label": "Carve Out an Unhurried Day",
-              "desc": "Cancel non-essential commitments. Give your soul permission to feel whatever surfaces without shame.",
-              "resilienceCost": 6,
-              "wisdomGain": 12,
-              "patienceGain": 10,
-              "resilienceGain": 8,
-              "reflectionOutcome": "Patience with oneself in the valleys is the truest badge of the Wayfarer. You do not rush sacred healing."
+              "label": "The Sabbath of Solitude",
+              "desc": "Clear your schedule of trivial meetings. Take a slow walk through the woods and allow the tears to come as gentle rain.",
+              "resilienceCost": 4,
+              "resilienceGain": 10,
+              "wisdomGain": 14,
+              "patienceGain": 14,
+              "reflectionOutcome": "Patience gave sorrow its rightful room, preventing it from bursting the seams of your soul. Peace returned like an evening tide."
             },
             {
               "archetype": "Community",
-              "label": "Share Stories with Loved Ones",
-              "desc": "Gather with family or friends to cook their favorite meal and recount joyful memories through laughter and tears.",
-              "resilienceCost": 8,
-              "wisdomGain": 15,
-              "communityGain": 14,
-              "reflectionOutcome": "Shared laughter alongside shared tears is the highest alchemy of healing. Love lives on through communion."
+              "label": "The Table of Shared Remembrance",
+              "desc": "Invite those who also loved them to share a meal. Break bread together, telling the stories that make you both weep and laugh.",
+              "resilienceCost": 6,
+              "resilienceGain": 14,
+              "wisdomGain": 18,
+              "communityGain": 16,
+              "reflectionOutcome": "Laughter shared through tears is the highest triumph of grace. Love was resurrected at the table, refusing to let darkness conquer."
             }
           ]
         }
@@ -155,105 +160,109 @@
     },
     "relationship": {
       "id": "relationship",
-      "title": "The Arc of Relationships",
-      "subtitle": "Boundaries, Truth & Reconciliation",
-      "description": "No armor is tested more fiercely than the human heart in proximity to others. Here, victory is not winning an argument, but preserving dignity, speaking truth with grace, and establishing holy boundaries.",
+      "title": "The Crucible of Fellowship",
+      "subtitle": "Truth, Humility & Holy Boundaries",
+      "description": "No armor is tested more fiercely than the vulnerable heart in communion with flawed humans. True strength is neither cowardice nor vengeance, but the rare courage to speak truth in love and guard the soul against contempt.",
       "themeColor": "#34d399",
       "icon": "ShieldCheck",
-      "scripture": "“A soft answer turns away wrath, but a harsh word stirs up anger.” — Proverbs 15:1",
+      "scripture": "“When he was reviled, he did not revile in return; when he suffered, he did not threaten, but continued entrusting himself to him who judges justly.” — 1 Peter 2:23",
       "challenges": [
         {
           "id": "rel_1",
-          "title": "The Heated Dinner",
-          "subtitle": "Old Grievances at the Table",
-          "narrative": "A family gathering starts peacefully, but a passive-aggressive barb about your life choices cuts through the air. You feel the surge of heat in your throat. Every instinct urges you to fire back with a devastating counter-strike.",
-          "scriptureAnchor": "“Everyone should be quick to listen, slow to speak and slow to become angry.” — James 1:19",
-          "reflectionQuestion": "Will your reaction defend your pride or preserve your peace?",
+          "title": "The Poisoned Goblet",
+          "subtitle": "The Subtle Knife at the Gathering",
+          "narrative": "It is supposed to be a warm gathering, but across the dinner table, an intimate relation slips a barbed, humiliating insult wrapped in a smile—mocking your deepest vulnerability before everyone. The air leaves the room. Blood rushes to your ears; your hands clench the silverware. You possess the exact secret knowledge that could destroy their facade in ten seconds.",
+          "scriptureAnchor": "“A soft answer turns away wrath, but a harsh word stirs up anger.” — Proverbs 15:1",
+          "reflectionQuestion": "Will you vindicate your pride by destroying them, or will you master your spirit in Christ?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Retaliate with Sharp Wit",
-              "desc": "Expose their hypocrisy in front of everyone. Win the room, burn the bridge.",
+              "label": "The Decapitating Strike",
+              "desc": "Deliver the devastating counter-truth with venom. Humiliate them before the entire room to teach them never to cross you again.",
               "resilienceCost": 28,
               "wisdomGain": 0,
-              "communityGain": -8,
-              "reflectionOutcome": "A victorious retaliatory insult leaves a bitter aftertaste. You may have won the round, but your soul is left scarred and agitated."
+              "communityGain": -10,
+              "reflectionOutcome": "The room fell silent in horror. You won the tactical skirmish, but your soul is burned with acid, and the fellowship is shattered beyond repair."
             },
             {
               "archetype": "Faith",
-              "label": "Speak the Soft Answer",
-              "desc": "Breathe. Silently pray for grace, then reply: 'I love you too much to turn dinner into a courtroom.'",
-              "resilienceCost": 8,
-              "wisdomGain": 20,
-              "faithGain": 8,
-              "patienceGain": 10,
-              "resilienceGain": 6,
-              "reflectionOutcome": "Extinguishing wrath with softness disarms aggression. You act as an ambassador of Christ's peace rather than an echo of worldly chaos."
+              "label": "The Gaze of Christ",
+              "desc": "Breathe slowly. Look them in the eye without fear or malice, and softly reply: 'I love you too much to trade wounds at this table.'",
+              "resilienceCost": 6,
+              "resilienceGain": 12,
+              "wisdomGain": 24,
+              "faithGain": 12,
+              "patienceGain": 12,
+              "reflectionOutcome": "Softness in the face of malice is not weakness—it is the roaring lion of divine self-control. The insult fell useless to the floor."
             },
             {
               "archetype": "Patience",
-              "label": "Take a Mindful Water Break",
-              "desc": "Excuse yourself calmly to get a glass of water. Allow the adrenaline to crest and recede before answering.",
-              "resilienceCost": 6,
-              "wisdomGain": 12,
-              "patienceGain": 12,
-              "reflectionOutcome": "Ten seconds of delayed reaction can save ten months of regret. Patience is emotional sovereignty."
+              "label": "Step Into the Cool Air",
+              "desc": "Place your napkin on the table. Calmly excuse yourself to walk outside under the stars until your pulse slows and the wrath cools.",
+              "resilienceCost": 5,
+              "resilienceGain": 8,
+              "wisdomGain": 14,
+              "patienceGain": 14,
+              "reflectionOutcome": "Ten seconds of silence under the open sky saved ten months of bitter remorse. You retained mastery of your own heart."
             },
             {
               "archetype": "Community",
-              "label": "Enlist an Ally's Perspective",
-              "desc": "Catch the eye of a calm companion at the table to de-escalate the room toward a healthier topic.",
-              "resilienceCost": 5,
-              "wisdomGain": 10,
-              "communityGain": 8,
-              "reflectionOutcome": "We are not called to fight family fires alone. A mature community navigates conflict with gentle diplomacy."
+              "label": "The Private Confrontation",
+              "desc": "Hold your tongue at dinner. Later that evening, pull them aside privately: 'What you said cut deeply. Let us speak honestly, face to face.'",
+              "resilienceCost": 8,
+              "resilienceGain": 10,
+              "wisdomGain": 18,
+              "communityGain": 14,
+              "reflectionOutcome": "You followed the biblical pattern of Matthew 18. By speaking truth in private, you protected the community and offered them a path to repentance."
             }
           ]
         },
         {
           "id": "rel_2",
-          "title": "Drawing the Line",
-          "subtitle": "When Saying 'Yes' is Betraying Yourself",
-          "narrative": "A chronic taker in your life demands yet another emergency sacrifice of your time and emotional energy, implying that if you were truly a good Christian, you would say yes.",
+          "title": "The Parasite of Guilt",
+          "subtitle": "When False Piety Demands Your Soul",
+          "narrative": "A chronic manipulator in your circle corners you with an urgent, manufactured crisis. They weaponize scripture and guilt, claiming that if you were a 'true Christian,' you would sacrifice your savings, time, and sanity for their recklessness. You feel the knot of exhaustion in your gut—the dread that saying 'no' makes you a selfish hypocrite.",
           "scriptureAnchor": "“Above all else, guard your heart, for everything you do flows from it.” — Proverbs 4:23",
-          "reflectionQuestion": "Is your accommodation motivated by genuine love, or fear of disapproval?",
+          "reflectionQuestion": "Are you serving God's kingdom, or are you bowing to the idol of human approval?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Give In with Resentful Compliance",
-              "desc": "Say yes while grinding your teeth; complain bitterly to others afterward.",
-              "resilienceCost": 24,
+              "label": "The Resentful Surrender",
+              "desc": "Cower before their guilt trip. Agree to their demands while silently boiling with loathing and complaining behind their back.",
+              "resilienceCost": 26,
               "wisdomGain": 0,
-              "patienceGain": -4,
-              "reflectionOutcome": "Resentful yeses are lies cloaked in piety. They poison relationships far more deeply than an honest, compassionate refusal."
+              "patienceGain": -6,
+              "reflectionOutcome": "A resentful 'yes' is a lie born of cowardice. It feeds the predator, starves your family, and stains your spirit with passive-aggressive bitterness."
             },
             {
               "archetype": "Faith",
-              "label": "Stand in Holy Stewardship",
-              "desc": "Recognize that your energy is God's trust. Gently say: 'I care for you, but I cannot take this on.'",
+              "label": "The Holy Wall",
+              "desc": "Look them in the eye with unshakable clarity: 'I care about your soul, but I will not enable this destruction. My answer is no.'",
               "resilienceCost": 6,
-              "wisdomGain": 22,
-              "faithGain": 10,
-              "resilienceGain": 8,
-              "reflectionOutcome": "Jesus frequently withdrew from demanding crowds to pray and rest. Boundaries are not the opposite of love; they are the container that keeps love pure."
+              "resilienceGain": 14,
+              "wisdomGain": 24,
+              "faithGain": 14,
+              "reflectionOutcome": "Jesus frequently walked away from demanding crowds to pray and rest. Holy boundaries are not unchristian; they are the bulwark of love."
             },
             {
               "archetype": "Patience",
-              "label": "Request Time to Discern",
-              "desc": "'I will not give you a hurried answer. Let me sleep on this and reply tomorrow morning.'",
+              "label": "The 24-Hour Fortress",
+              "desc": "'I make no decisions under urgency. I will pray, seek counsel, and give you my answer tomorrow morning at 9 AM.'",
               "resilienceCost": 4,
-              "wisdomGain": 14,
-              "patienceGain": 10,
-              "reflectionOutcome": "Buying time breaks the cycle of manipulation. You reclaim deliberate stewardship over your schedule."
+              "resilienceGain": 8,
+              "wisdomGain": 16,
+              "patienceGain": 12,
+              "reflectionOutcome": "Buying time broke the fever of manipulation. In the quiet of the morning, their manufactured emergency withered to nothing."
             },
             {
               "archetype": "Community",
-              "label": "Seek Counsel from a Mentor",
-              "desc": "Review the dynamic with a wise pastor or therapist before responding.",
-              "resilienceCost": 6,
-              "wisdomGain": 15,
-              "communityGain": 10,
-              "reflectionOutcome": "Wise counsel acts as a mirror, exposing codependent patterns and helping you walk in healthy freedom."
+              "label": "Seek Elder Discernment",
+              "desc": "Consult a seasoned pastor or counselor who knows the difference between true charity and codependent bondage.",
+              "resilienceCost": 5,
+              "resilienceGain": 10,
+              "wisdomGain": 18,
+              "communityGain": 12,
+              "reflectionOutcome": "Wise counsel cut through the fog of spiritual gaslighting. You stand free, unshackled from other people's manufactured guilt."
             }
           ]
         }
@@ -261,104 +270,109 @@
     },
     "work": {
       "id": "work",
-      "title": "The Arc of Work & Purpose",
-      "subtitle": "Self-Worth Beyond the Resume",
-      "description": "Our labor was intended for flourishing, yet the modern workplace often reduces humans to output and metrics. In this arc, you learn to separate who you are in God from what you achieve.",
+      "title": "The Arc of the Crucible",
+      "subtitle": "Vocation, Pride & The Shattered Idol",
+      "description": "Our labor was created to bless the world, but modern ambition turns work into an altar where human beings sacrifice their souls for status and security. Here, the Wayfarer separates who they are in God from what they produce.",
       "themeColor": "#fbbf24",
       "icon": "Briefcase",
-      "scripture": "“Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.” — Philippians 4:6",
+      "scripture": "“What good will it be for someone to gain the whole world, yet forfeit their soul?” — Matthew 16:26",
       "challenges": [
         {
           "id": "work_1",
-          "title": "The Public Critique",
-          "subtitle": "Under Fire in the Meeting",
-          "narrative": "During a cross-team presentation, a senior stakeholder abruptly questions your competence and calls your deliverables into question in front of dozens of colleagues.",
+          "title": "The Public Slaughter",
+          "subtitle": "Humiliation Before the Assembly",
+          "narrative": "You stand before the board or team to present the labor of six months. Midway through, a senior authority interrupts with biting condescension, dismantling your conclusions and questioning your integrity in front of your peers. The heat prickles your neck; cold sweat runs down your spine. The inner accuser screams that you are a fraud whose mask was finally torn away.",
           "scriptureAnchor": "“Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.” — Colossians 3:23",
-          "reflectionQuestion": "Is your identity anchored in the praise of mortals, or in the delight of your Creator?",
+          "reflectionQuestion": "Does your honor belong to the applause of men, or to the God who sees your hidden faithfulness?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Defend Defensively with Blame",
-              "desc": "Blame subordinate team members and shift fault aggressively to save face.",
-              "resilienceCost": 26,
+              "label": "The Coward's Shield",
+              "desc": "Blame the Junior teammates. Throw your collaborators into the gears to salvage your own reputation in the room.",
+              "resilienceCost": 30,
               "wisdomGain": 0,
-              "communityGain": -6,
-              "reflectionOutcome": "Throwing others under the bus damages trust irrevocably and broadcasts deep insecurity to the entire room."
+              "communityGain": -12,
+              "faithGain": -5,
+              "reflectionOutcome": "You saved your skin for an hour, but you traded your honor. The team will never trust you again, and your conscience rots within."
             },
             {
               "archetype": "Faith",
-              "label": "Anchor Self-Worth in Christ",
-              "desc": "Take a breath. Remember that no slide deck defines your worth. State: 'That is valuable feedback; let us address the data together.'",
+              "label": "The Unshakable Foundation",
+              "desc": "Plant your feet firmly. Breathe. Remember: No title on earth will be carved into your gravestone. Say: 'I hear the critique; let us examine the data with rigor.'",
               "resilienceCost": 6,
-              "wisdomGain": 20,
-              "faithGain": 10,
-              "resilienceGain": 10,
-              "reflectionOutcome": "When your approval is already secured by God, human criticism loses its power to terrify. You remain calm, composed, and constructive."
+              "resilienceGain": 16,
+              "wisdomGain": 24,
+              "faithGain": 14,
+              "reflectionOutcome": "When God is your judge, the sneer of mortal men cannot destroy your soul. You stood with quiet majesty, turning a battleground into a classroom."
             },
             {
               "archetype": "Patience",
-              "label": "Separate Tone from Substance",
-              "desc": "Ignore the sharp tone and extract any genuine grain of useful critique calmly.",
+              "label": "Extract the Iron from the Mud",
+              "desc": "Swallow the humiliation. Filter out the arrogant tone and objectively identify the two genuine points where the work can be sharpened.",
               "resilienceCost": 8,
-              "wisdomGain": 16,
-              "patienceGain": 12,
-              "reflectionOutcome": "Patience filters out the emotional noise, allowing you to salvage genuine value from hostile deliveries."
+              "resilienceGain": 8,
+              "wisdomGain": 18,
+              "patienceGain": 14,
+              "reflectionOutcome": "You refused to let ego dictate your response. By extracting truth even from an enemy's mouth, you attained true mastery."
             },
             {
               "archetype": "Community",
-              "label": "Debrief with Trusted Colleagues",
-              "desc": "Meet your teammates after the session to restore morale and reaffirm mutual support.",
-              "resilienceCost": 5,
-              "wisdomGain": 12,
-              "communityGain": 12,
-              "reflectionOutcome": "Shared resilience turns team trials into bonded solidarity. Together you shoulder what would crush one alone."
+              "label": "Gather the Scared Ranks",
+              "desc": "Step into the hallway after the ordeal. Look your colleagues in the eye, take full responsibility as leader, and reaffirm their value.",
+              "resilienceCost": 6,
+              "resilienceGain": 12,
+              "wisdomGain": 16,
+              "communityGain": 18,
+              "reflectionOutcome": "Adversity shared with courage knits a team into an unbreakable brotherhood. You earned far more loyalty than any promotion could grant."
             }
           ]
         },
         {
           "id": "work_2",
-          "title": "The Unplanned Setback",
-          "subtitle": "When the Venture Crumbles",
-          "narrative": "A project you dedicated six months of evenings and weekends to is canceled with an impersonal email. The sinking feeling in your stomach whispers that you are a failure.",
-          "scriptureAnchor": "“For I know the plans I have for you,” declares the Lord, “plans to prosper you and not to harm you, plans to give you hope and a future.” — Jeremiah 29:11",
-          "reflectionQuestion": "Can you distinguish between a failed project and a failed human being?",
+          "title": "The Closed Door",
+          "subtitle": "When the Venture Collapses to Dust",
+          "narrative": "The email is four sentences long: the funding is denied, the contract canceled, the project dead. Six months of sleepless nights, sacrificed weekends, and fervent prayers—wiped out like a footprint on the beach. You sit in your darkened office staring at the screen. The debt remains; the dream is a corpse. The ancient serpent whispers: 'Where was your God when you needed Him?'",
+          "scriptureAnchor": "“Though he slay me, yet will I trust in him; but I will maintain my ways before him.” — Job 13:15",
+          "reflectionQuestion": "Can you trust the Master's chisel even when it cuts away what you loved most?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Spiral into Self-Condemnation",
-              "desc": "Ruminate endlessly, concluding that you are fundamentally doomed to disappoint.",
+              "label": "The Curse of Despair",
+              "desc": "Slam the desk, curse your wasted devotion, and vow never to take a holy risk again. Sink into cynical apathy.",
               "resilienceCost": 28,
               "wisdomGain": 0,
-              "faithGain": -5,
-              "reflectionOutcome": "Allowing an external failure to define your core worth is a spiritual tragedy. Despair robs you of tomorrow's wisdom."
+              "faithGain": -8,
+              "reflectionOutcome": "Cynicism is the coward's armor—it protects against future disappointment by killing hope in advance. You have imprisoned yourself."
             },
             {
               "archetype": "Faith",
-              "label": "Trust God's Higher Trajectory",
-              "desc": "Pray: 'Lord, this closed door stings, but I trust Your redirection over my narrow plans.'",
+              "label": "The Sacrifice of Trust",
+              "desc": "Bow your head over the keyboard. Pray: 'Lord, this door is locked, and the ache is real. But I do not worship my projects; I worship You. Lead me to the next trail.'",
               "resilienceCost": 6,
-              "wisdomGain": 22,
-              "faithGain": 12,
-              "resilienceGain": 12,
-              "reflectionOutcome": "History's greatest pilgrims all walked through closed doors. Setbacks are often divine redirections toward deeper fruitfulness."
+              "resilienceGain": 20,
+              "wisdomGain": 26,
+              "faithGain": 18,
+              "reflectionOutcome": "Every patriarch in scripture walked through ruins before finding the promised land. A closed door is God's fierce grace, protecting you from a counterfeit summit."
             },
             {
               "archetype": "Patience",
-              "label": "Document Lessons Learned",
-              "desc": "Sit down with a journal and objectively record three skills and two insights you gained from the effort.",
+              "label": "The Scribe's Ledger",
+              "desc": "Open your journal. Write down three skills forged in the fire and two illusions shattered. Nothing built with blood and sweat is truly lost.",
               "resilienceCost": 5,
+              "resilienceGain": 10,
               "wisdomGain": 18,
-              "patienceGain": 8,
-              "reflectionOutcome": "Nothing is wasted when extracted for wisdom. You turn disappointment into the foundation of mastery."
+              "patienceGain": 12,
+              "reflectionOutcome": "Disappointment digested with wisdom becomes the iron backbone of future triumphs. You are a craftsman learning the grain of the wood."
             },
             {
               "archetype": "Community",
-              "label": "Call a Seasoned Mentor",
-              "desc": "Hear the perspective of someone who survived similar career crashes earlier in their journey.",
-              "resilienceCost": 5,
-              "wisdomGain": 15,
-              "communityGain": 10,
-              "reflectionOutcome": "Mentors normalize the turbulence of life's journey, dissolving the illusion that everyone else has a smooth, effortless path."
+              "label": "The Veteran's Campfire",
+              "desc": "Call an elder mentor who lost a company thirty years ago and survived to tell of God's provision. Listen to their story.",
+              "resilienceCost": 4,
+              "resilienceGain": 12,
+              "wisdomGain": 16,
+              "communityGain": 14,
+              "reflectionOutcome": "The mentor smiled: 'I thought my life was over that day, too. It was only beginning.' Perspective broke the back of your panic."
             }
           ]
         }
@@ -366,109 +380,110 @@
     },
     "self": {
       "id": "self",
-      "title": "The Arc of Self-Care & Inner Life",
-      "subtitle": "Restoration of the Mind and Spirit",
-      "description": "You cannot pour from an empty vessel. In this sacred arc, you confront the inner critic, dismantle exhaustion, and practice the ancient art of holy rest.",
+      "title": "The Desert of the Soul",
+      "subtitle": "Exhaustion, The Midnight Panic & Holy Rest",
+      "description": "You cannot carry the light if your lamp has no oil. In this sacred valley, the Wayfarer confronts the relentless accuser within, breaks the golden calf of perpetual hurry, and learns the holy discipline of stillness.",
       "themeColor": "#f472b6",
       "icon": "SunMedium",
-      "scripture": "“Come to me, all you who are weary and burdened, and I will give you rest.” — Matthew 11:28",
+      "scripture": "“Truly my soul finds rest in God; my salvation comes from him. Truly he is my rock and my salvation; he is my fortress, I will never be shaken.” — Psalm 62:1-2",
       "challenges": [
         {
           "id": "self_1",
-          "title": "The 3 AM Panic",
-          "subtitle": "The Insomnia of Anxiety",
-          "narrative": "You wake in the dead of night, heart thumping against your ribs, flooded with irrational worst-case scenarios about finances, health, and family.",
-          "scriptureAnchor": "“When I am afraid, I put my trust in you.” — Psalm 56:3",
-          "reflectionQuestion": "What is the small truth that can steady your breathing right now?",
+          "title": "The 3:00 AM Siege",
+          "subtitle": "The Hour of Wolves and Accusations",
+          "narrative": "You wake bolt upright at 3:14 AM, sheets soaked with sweat. Your heart is pounding like a war drum in your throat. Out of the darkness, every regret, financial dread, and forgotten failure of the past decade descends upon you like vultures. The room feels airless; your chest is bound in iron bands.",
+          "scriptureAnchor": "“I have calmed and quieted my soul, like a weaned child with its mother; like a weaned child is my soul within me.” — Psalm 131:2",
+          "reflectionQuestion": "Will you feed the midnight terror with noise, or will you anchor your breathing in the Eternal Name?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Doomscroll on Your Phone",
-              "desc": "Stare into the blue light of social media and news feeds until your eyes burn.",
-              "resilienceCost": 22,
-              "patienceGain": -4,
+              "label": "The Glowing Blue Abyss",
+              "desc": "Reach for the smartphone. Stare into the cold blue light, scrolling horrific news and social media feeds until your eyes ache and dawn breaks gray.",
+              "resilienceCost": 25,
+              "patienceGain": -5,
               "wisdomGain": 0,
-              "reflectionOutcome": "Flooding an anxious nervous system with digital noise is pouring kerosene on a fire. You wake exhausted and depleted."
+              "reflectionOutcome": "Pouring digital poison into a frightened nervous system leaves you drained and hollow. The dawn arrived, but you are a ghost."
             },
             {
               "archetype": "Faith",
-              "label": "The Breath of Grace",
-              "desc": "Inhale deeply for 4 counts: 'The Lord is my Shepherd.' Exhale for 4 counts: 'I shall not want.' Repeat until stillness descends.",
+              "label": "The Jesus Prayer & Sacred Breath",
+              "desc": "Place one hand over your heart, feet on the floor. Inhale slowly: 'Lord Jesus Christ, Son of God...' Exhale: '...have mercy on me, a sinner.' Repeat in the dark until still.",
               "resilienceCost": 2,
-              "wisdomGain": 18,
-              "faithGain": 10,
-              "resilienceGain": 16,
-              "patienceGain": 8,
-              "reflectionOutcome": "Connecting physical breath to biblical truth down-regulates the sympathetic nervous system and recalibrates the spirit."
+              "resilienceGain": 22,
+              "wisdomGain": 22,
+              "faithGain": 16,
+              "patienceGain": 12,
+              "reflectionOutcome": "The Name above all names brought stillness to the tempest. Cortisol receded, your heartbeat slowed, and the shelter of the Almighty enveloped you."
             },
             {
               "archetype": "Patience",
-              "label": "Write a Worry Dump",
-              "desc": "Get out of bed, write every worry on paper, and leave the notepad in another room until morning.",
+              "label": "The Paper Exorcism",
+              "desc": "Turn on a soft bedside lamp. Write every terrifying phantom down on paper with brutal honesty, then close the notebook and say: 'God holds you until morning.'",
               "resilienceCost": 4,
-              "wisdomGain": 14,
-              "patienceGain": 10,
-              "resilienceGain": 8,
-              "reflectionOutcome": "Externalizing thoughts onto paper frees your mind from having to constantly loop through them."
+              "resilienceGain": 12,
+              "wisdomGain": 16,
+              "patienceGain": 14,
+              "reflectionOutcome": "By giving names to the shadows, you stripped them of their supernatural horror. They were only finite problems, not your destiny."
             },
             {
               "archetype": "Community",
-              "label": "Text a Prayer Partner",
-              "desc": "Send a short message: 'Woke with anxiety tonight, please hold me in prayer when you wake.'",
+              "label": "The Beacon to the Watchman",
+              "desc": "Send a quiet text to a brother in Christ: 'Awake in terror tonight. Whisper a prayer for me when your eyes open.'",
               "resilienceCost": 3,
-              "wisdomGain": 10,
-              "communityGain": 10,
-              "resilienceGain": 6,
-              "reflectionOutcome": "Knowing that you are held in intercession softens the terrifying chill of midnight isolation."
+              "resilienceGain": 14,
+              "wisdomGain": 14,
+              "communityGain": 14,
+              "reflectionOutcome": "Just sending the beacon broke the terrible isolation of the dark. You fell back asleep knowing you were not alone in the watch."
             }
           ]
         },
         {
           "id": "self_2",
-          "title": "The Empty Well (Burnout)",
-          "subtitle": "When Even Small Things Feel Crushing",
-          "narrative": "A simple question like 'what do you want for dinner?' brings you to tears. Every muscle feels like lead, and you realize you have been running on fumes for months.",
-          "scriptureAnchor": "“He makes me lie down in green pastures, he leads me beside quiet waters, he refreshes my soul.” — Psalm 23:2-3",
-          "reflectionQuestion": "Are you willing to rest before your body forces you to stop?",
+          "title": "The Prophet Under the Broom Tree",
+          "subtitle": "Burnout & The Limit of Human Clay",
+          "narrative": "A family member gently asks what you want for supper, and suddenly you are weeping uncontrollably over the kitchen sink. Your limbs feel filled with lead; you cannot remember the last time you slept without tension grinding your teeth. You have run yourself past the point of exhaustion, convinced that if you stop, the world will collapse.",
+          "scriptureAnchor": "“He sat down under a broom tree and asked that he might die... And behold, an angel touched him and said to him, 'Arise and eat.' And he looked, and there was at his head a cake baked on hot stones and a jar of water.” — 1 Kings 19:4-6",
+          "reflectionQuestion": "Are you willing to confess you are made of dust, or will you kill your body to feed your pride?",
           "choices": [
             {
               "archetype": "Impulsive",
-              "label": "Power Through with Caffeine and Guilt",
-              "desc": "Drink a third energy drink, berate yourself for weakness, and keep pushing.",
-              "resilienceCost": 30,
+              "label": "The Lash of Willpower",
+              "desc": "Gulp down an energy drink, berate yourself for being pathetic, wipe your eyes, and push through another 14-hour grind.",
+              "resilienceCost": 32,
+              "patienceGain": -6,
               "wisdomGain": 0,
-              "patienceGain": -5,
-              "reflectionOutcome": "Treating your body like an enemy will inevitably cause a catastrophic collapse. Grace honors biological reality."
+              "faithGain": -4,
+              "reflectionOutcome": "Treating your mortal body like a beast of burden will end in a catastrophic crash. Pride whispered that you were immortal; reality will prove otherwise."
             },
             {
               "archetype": "Faith",
-              "label": "Receive Sabbath as Commandment",
-              "desc": "Lay down your tools. Rest is not a luxury earned by exhaustion; it is an act of trust that God runs the universe, not you.",
+              "label": "The Holy Sabbath Commandment",
+              "desc": "Drop the tools. Cancel the non-essentials. Proclaim: 'I am a creature, not the Creator. The universe runs on God's sovereignty, not my frantic labor.'",
               "resilienceCost": 4,
-              "wisdomGain": 24,
-              "faithGain": 12,
-              "resilienceGain": 20,
-              "reflectionOutcome": "Entering Sabbath rest is an act of deep spiritual rebellion against the idols of productivity and hurry."
+              "resilienceGain": 25,
+              "wisdomGain": 26,
+              "faithGain": 16,
+              "reflectionOutcome": "Sabbath is spiritual defiance against the Pharaoh of modern productivity. In holy rest, your soul drank deep from living water."
             },
             {
               "archetype": "Patience",
-              "label": "Take an Unhurried Nature Walk",
-              "desc": "Leave devices behind. Walk 20 minutes under the trees, noticing birds, wind, and sky.",
+              "label": "The Elijah Feast",
+              "desc": "Like Elijah under the broom tree: eat hot, nutritious food, drink cool spring water, and lay down for a three-hour nap with the phone off.",
               "resilienceCost": 3,
-              "wisdomGain": 14,
-              "patienceGain": 12,
-              "resilienceGain": 12,
-              "reflectionOutcome": "Creation constantly sings of God's sufficiency. Immersing yourself in it resets your inner tempo."
+              "resilienceGain": 18,
+              "wisdomGain": 18,
+              "patienceGain": 16,
+              "reflectionOutcome": "God did not preach a sermon to Elijah in his burnout; He baked him bread and put him to sleep. You honored your holy clay."
             },
             {
               "archetype": "Community",
-              "label": "Ask Loved Ones to Step In",
-              "desc": "'I am at my limit. Can you take care of dinner and the chores this evening?'",
+              "label": "The Surrender of Pride",
+              "desc": "Tell your loved ones: 'I have hit the bottom of my strength. I need you to carry the house and the meals for the next three days.'",
               "resilienceCost": 4,
-              "wisdomGain": 16,
-              "communityGain": 12,
-              "resilienceGain": 10,
-              "reflectionOutcome": "Vulnerability is strength. Allowing others to serve you knits community together in authentic love."
+              "resilienceGain": 16,
+              "wisdomGain": 20,
+              "communityGain": 18,
+              "reflectionOutcome": "Allowing others to serve you is the highest death of pride. The community rallied around you with hot soup and fierce love."
             }
           ]
         }
@@ -478,49 +493,49 @@
   "disciplines": [
     {
       "id": "gospel_reading",
-      "name": "The Gospel Reading",
-      "type": "Practice",
-      "description": "Daily immersion in the words and ways of Christ. Increases clarity during spiritual trials and unlocks comforting scriptures.",
-      "buff": "+10% Faith gain during encounters",
+      "name": "The Gospel Scripture Anchor",
+      "type": "Sacred Practice",
+      "description": "Daily immersion in the words and presence of Christ. Clears spiritual fog during trials and fortifies Faith against deceit.",
+      "buff": "+20% Faith gain during moral encounters",
       "icon": "BookOpen"
     },
     {
       "id": "journaling",
-      "name": "Reflective Journaling",
-      "type": "Skill",
-      "description": "The practice of articulating your internal weather on paper. Helps metabolize grief and deepens emotional insight.",
-      "buff": "+5 Community & Wisdom per journal entry",
+      "name": "Wayfarer's Honest Journal",
+      "type": "Spiritual Discipline",
+      "description": "Unfiltered articulation of internal conflict, sorrow, and gratitude on parchment. Metabolizes grief into lasting Wisdom.",
+      "buff": "+5 Community & +5 Wisdom per journal entry",
       "icon": "PenTool"
     },
     {
       "id": "boundaries",
-      "name": "Sacred Boundaries",
-      "type": "Armor",
-      "description": "The fortified armor of learning to say a holy 'no' without guilt. Protects the heart from toxic emotional drain.",
-      "buff": "Reduces Resilience drain in Relationship encounters by 35%",
+      "name": "The Armor of Holy Boundaries",
+      "type": "Spiritual Armor",
+      "description": "The fortified discipline of speaking a compassionate, uncompromising 'no'. Guards the soul from manipulator drain.",
+      "buff": "Reduces Resilience drain in Relationship trials by 35%",
       "icon": "Shield"
     },
     {
       "id": "prayer_knot",
-      "name": "The Prayer Knot",
-      "type": "Craftable Practice",
-      "description": "A focused discipline of continuous intercession requiring 15 Faith and 10 Community. Bestows a temporary fortitude shield.",
-      "buff": "Provides +25 Temporary Resilience before a heavy challenge",
+      "name": "The Pilgrim's Prayer Knot",
+      "type": "Intercession Cord",
+      "description": "Hand-tied cord of continuous prayer requiring 15 Faith and 10 Community. Bestows sudden fortitude before harrowing trials.",
+      "buff": "Provides +25 Fortification Resilience when facing peril",
       "icon": "Cross"
     },
     {
       "id": "breath_of_grace",
       "name": "The Breath of Grace",
-      "type": "Micro-Habit",
-      "description": "A 4-4-4-4 box breathing sequence paired with scripture. Instantly calms nervous system arousal during acute anxiety.",
-      "buff": "Can be activated anytime to soothe the mind and restore Resilience",
+      "type": "Somatic Prayer",
+      "description": "Sacred 4-4-4-4 rhythm anchored to Psalm 23. Quenches autonomic panic and recalibrates the soul in Christ's presence.",
+      "buff": "Restores steady peace and halts panic attacks",
       "icon": "Wind"
     },
     {
       "id": "gratitude_stone",
-      "name": "The Gratitude Stone",
-      "type": "Habit",
-      "description": "Carried in pocket or hand. A physical reminder to pause thrice daily and vocalize three specific gifts of God.",
+      "name": "The River Stone of Remembrance",
+      "type": "Keepsake Habit",
+      "description": "Smooth stone held in hand. A physical anchor to pause thrice daily and vocalize three specific gifts of God in the dark.",
       "buff": "+15% Wisdom gain across all Arcs",
       "icon": "Sparkles"
     }
@@ -528,29 +543,29 @@
   "actsOfGrace": [
     {
       "id": "grace_1",
-      "title": "The Unprompted Encouragement",
-      "prompt": "Send a heartfelt message of gratitude to someone who guided you during a difficult season of life, expecting nothing in return.",
+      "title": "The Unprompted Letter of Life",
+      "prompt": "Write and send an unexpected letter or message of gratitude to someone who bore your burdens in a past season, expecting nothing in return.",
       "category": "Community",
       "reward": "+10 Community, +5 Wisdom"
     },
     {
       "id": "grace_2",
-      "title": "The Silent Intercession",
-      "prompt": "Identify someone who irritated you recently. Spend 5 minutes in sincere prayer for their flourishing and inner peace.",
+      "title": "The Secret Blessing on an Enemy",
+      "prompt": "Identify the person who treated you with contempt or unfairness recently. Spend 5 sincere minutes on your knees interceding for their salvation and peace.",
       "category": "Patience",
       "reward": "+10 Patience, +8 Faith"
     },
     {
       "id": "grace_3",
-      "title": "The Unhurried Walk",
-      "prompt": "Step outside for 10 minutes without your phone. Walk slowly, notice five details of God's creation, and breathe deeply.",
+      "title": "The Prophet's Walk",
+      "prompt": "Step outside into the wind and trees for 15 minutes without your phone. Walk in slow reverence, noting five small mercies of God in creation.",
       "category": "Self-Care",
       "reward": "+15 Resilience, +5 Wisdom"
     },
     {
       "id": "grace_4",
-      "title": "The Hidden Blessing",
-      "prompt": "Perform one small act of kindness anonymously—pay for someone's coffee, clean a shared space, or leave an encouraging note.",
+      "title": "The Hidden Alms",
+      "prompt": "Perform one substantial act of service or generosity completely in secret—leave groceries, pay a bill, or bless a stranger without leaving your name.",
       "category": "Faith",
       "reward": "+12 Faith, +8 Community"
     }

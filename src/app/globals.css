@@ -138,3 +138,82 @@ html, body {
   background: rgba(255, 255, 255, 0.15);
   border-radius: 4px;
 }
+
+/* Screen Shake Animation on Heavy Impact / Severe Moral Choice */
+@keyframes screenShake {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  15% { transform: translate(-4px, 3px) rotate(-0.5deg); }
+  30% { transform: translate(4px, -3px) rotate(0.5deg); }
+  45% { transform: translate(-3px, -2px) rotate(-0.3deg); }
+  60% { transform: translate(3px, 2px) rotate(0.3deg); }
+  75% { transform: translate(-1px, 1px) rotate(0deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+.animate-screen-shake {
+  animation: screenShake 0.45s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+/* Physiological Heartbeat Vignette Overlay (Triggers when Resilience <= 25) */
+@keyframes heartbeatVignettePulse {
+  0%, 100% {
+    box-shadow: inset 0 0 35px rgba(225, 29, 72, 0.15);
+  }
+  50% {
+    box-shadow: inset 0 0 75px rgba(225, 29, 72, 0.45), inset 0 0 120px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.heartbeat-vignette {
+  animation: heartbeatVignettePulse 1.1s ease-in-out infinite;
+  border-color: rgba(225, 29, 72, 0.4) !important;
+}
+
+/* Illuminated Medieval Dark Manuscript Cards */
+.illuminated-card {
+  background: radial-gradient(circle at 50% 0%, #1c2033 0%, #11131e 75%, #0d0e17 100%);
+  border: 1px solid rgba(229, 185, 116, 0.35);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.illuminated-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(229, 185, 116, 0.8), transparent);
+}
+
+.gothic-border {
+  position: relative;
+  border: 1px solid rgba(229, 185, 116, 0.25);
+}
+
+.gothic-border::after {
+  content: '✦';
+  position: absolute;
+  top: -8px;
+  right: -6px;
+  font-size: 11px;
+  color: var(--accent-gold);
+  line-height: 1;
+  opacity: 0.7;
+}
+
+/* Illuminated Narrative Drop Cap */
+.drop-cap::first-letter {
+  float: left;
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  line-height: 0.85;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-bottom: 2px;
+  color: var(--accent-gold);
+  text-shadow: 0 0 15px rgba(229, 185, 116, 0.4);
+  font-weight: bold;
+}
+

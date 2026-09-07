@@ -91,6 +91,18 @@ export default function WayfarerPage() {
     }
   }, [stats.resilience, mounted, isStasis]);
 
+  // Physiological heartbeat for low resilience (< 25 HP)
+  useEffect(() => {
+    if (mounted && soundEnabled) {
+      audio.setHeartbeat(stats.resilience <= 25 && !isStasis);
+    } else {
+      audio.setHeartbeat(false);
+    }
+    return () => {
+      audio.setHeartbeat(false);
+    };
+  }, [stats.resilience, mounted, soundEnabled, isStasis]);
+
   const handleResolveChoice = (choice: Choice) => {
     setStats((prev) => {
       const netResilience = Math.max(
@@ -193,6 +205,7 @@ export default function WayfarerPage() {
   };
 
   const currentArc = arcs[currentArcId] || Object.values(arcs)[0];
+  const isLowResilience = stats.resilience <= 25 && !isStasis;
 
   if (!mounted) {
     return (
@@ -206,7 +219,7 @@ export default function WayfarerPage() {
   }
 
   return (
-    <div className="portrait-container">
+    <div className={`portrait-container transition-all duration-500 ${isLowResilience ? 'heartbeat-vignette' : ''}`}>
       {/* Header Bar */}
       <Header
         stats={stats}
@@ -288,7 +301,7 @@ export default function WayfarerPage() {
         <nav className="fixed bottom-0 left-0 right-0 max-w-[480px] mx-auto z-40 bg-secondary/95 backdrop-blur-md border-t border-white/10 px-2 py-1.5 flex justify-around">
           <button
             onClick={() => {
-              audio.playGroundingTone();
+              audio.pluckAcousticString(220, 2.5);
               setActiveTab('compass');
             }}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
@@ -303,7 +316,7 @@ export default function WayfarerPage() {
 
           <button
             onClick={() => {
-              audio.playGroundingTone();
+              audio.pluckAcousticString(261.63, 2.5);
               setActiveTab('inventory');
             }}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
@@ -318,7 +331,7 @@ export default function WayfarerPage() {
 
           <button
             onClick={() => {
-              audio.playGroundingTone();
+              audio.pluckAcousticString(293.66, 2.8);
               setActiveTab('grace');
             }}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${
@@ -333,7 +346,7 @@ export default function WayfarerPage() {
 
           <button
             onClick={() => {
-              audio.playGroundingTone();
+              audio.pluckAcousticString(329.63, 2.8);
               setIsJournalOpen(true);
             }}
             className="flex flex-col items-center py-1 px-3 rounded-xl text-gray-400 hover:text-purple-300 transition-all"
@@ -344,7 +357,7 @@ export default function WayfarerPage() {
 
           <button
             onClick={() => {
-              audio.playGroundingTone();
+              audio.pluckAcousticString(196.00, 3.2);
               setActiveTab('rest');
             }}
             className={`flex flex-col items-center py-1 px-3 rounded-xl transition-all ${

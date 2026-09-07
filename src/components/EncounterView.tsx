@@ -26,6 +26,7 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
 }) => {
   const [selectedChoice, setSelectedChoice] = useState<Choice | null>(null);
   const [showOutcome, setShowOutcome] = useState(false);
+  const [isShaking, setIsShaking] = useState(false);
 
   // Active discipline effects
   const hasBoundaries = inventory.includes('boundaries');
@@ -45,12 +46,16 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
     }
 
     if (choice.archetype === 'Faith') {
-      audio.playGraceChord();
+      audio.playAcousticGuitarChord('grace');
     } else if (choice.archetype === 'Impulsive') {
-      audio.haptic([40, 80, 40]);
-      audio.playGroundingTone();
+      setIsShaking(true);
+      audio.haptic([50, 100, 60]);
+      audio.playAcousticGuitarChord('sorrow');
+      setTimeout(() => setIsShaking(false), 500);
+    } else if (choice.archetype === 'Patience') {
+      audio.playAcousticGuitarChord('peace');
     } else {
-      audio.playChime(432, 2.0);
+      audio.playAcousticGuitarChord('dusk');
     }
 
     setSelectedChoice(modifiedChoice);
@@ -59,7 +64,7 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
   };
 
   return (
-    <div className="flex flex-col flex-1 p-4 pb-20">
+    <div className={`flex flex-col flex-1 p-4 pb-20 transition-all ${isShaking ? 'animate-screen-shake' : ''}`}>
       {/* Top navigation */}
       <div className="flex items-center justify-between mb-3">
         <button
@@ -69,42 +74,40 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
           <ArrowLeft size={14} />
           <span>Return to Path</span>
         </button>
-        <span className="text-[10px] font-mono uppercase tracking-wider text-gold/80 px-2 py-0.5 rounded-full bg-gold/10 border border-gold/20">
-          Internal Conflict Resolution
+        <span className="text-[10px] font-serif uppercase tracking-wider text-gold/90 px-2 py-0.5 rounded-full bg-gold/10 border border-gold/30">
+          ✦ Sacred Crucible ✦
         </span>
       </div>
 
       {!showOutcome ? (
         <div className="space-y-4">
-          {/* Challenge Narrative Card */}
-          <div className="p-4 rounded-2xl bg-card border border-white/10 shadow-xl relative overflow-hidden">
-            <div className="flex items-center space-x-2 text-xs font-serif text-gray-400 mb-1">
-              <span>Encounter</span>
-              <span>•</span>
-              <span className="text-gray-300">{challenge.subtitle}</span>
+          {/* Challenge Narrative Card - Illuminated Manuscript */}
+          <div className="p-5 rounded-2xl illuminated-card shadow-2xl relative overflow-hidden">
+            <div className="flex items-center justify-between mb-2 border-b border-gold/20 pb-2">
+              <div className="flex items-center space-x-1.5 text-xs font-serif text-gold/90">
+                <span>✦</span>
+                <span className="uppercase tracking-widest text-[11px] font-semibold">{challenge.title}</span>
+              </div>
+              <span className="text-[10px] text-gray-400 italic font-reading">{challenge.subtitle}</span>
             </div>
 
-            <h2 className="text-lg font-serif font-bold text-gray-100 mb-2.5">
-              {challenge.title}
-            </h2>
-
-            <p className="text-sm font-reading text-gray-200 leading-relaxed mb-4">
+            <p className="text-sm font-reading text-gray-100 leading-relaxed mb-4 drop-cap">
               {challenge.narrative}
             </p>
 
             {/* Scripture Anchor */}
-            <div className="p-3 rounded-xl bg-secondary/80 border-l-2 border-gold/60 text-xs font-reading italic text-gold/90 mb-3.5">
-              <div className="flex items-center space-x-1 text-[10px] not-italic text-gold font-sans font-medium uppercase tracking-wider mb-1">
-                <BookOpen size={11} />
-                <span>Anchoring Scripture</span>
+            <div className="p-3.5 rounded-xl bg-black/50 border-l-2 border-gold text-xs font-reading italic text-amber-200/95 mb-3.5 shadow-inner">
+              <div className="flex items-center space-x-1.5 text-[10px] not-italic text-gold font-serif font-semibold uppercase tracking-wider mb-1">
+                <BookOpen size={12} className="text-gold" />
+                <span>Sacred Scripture Anchor</span>
               </div>
               {challenge.scriptureAnchor}
             </div>
 
             {/* Socratic Reflection Prompt */}
-            <div className="p-2.5 rounded-lg bg-black/40 border border-white/5 text-xs text-purple-200/90 font-reading">
-              <span className="font-sans font-semibold text-purple-300 block text-[10px] uppercase tracking-wider mb-0.5">
-                The Question Within:
+            <div className="p-3 rounded-lg bg-purple-950/20 border border-purple-500/20 text-xs text-purple-200/90 font-reading">
+              <span className="font-serif font-semibold text-purple-300 block text-[10px] uppercase tracking-wider mb-0.5">
+                The Question of the Heart:
               </span>
               {challenge.reflectionQuestion}
             </div>
@@ -113,11 +116,11 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
           {/* Micro-Decisions Section */}
           <div>
             <div className="flex items-center justify-between mb-2 px-1">
-              <span className="text-xs font-serif uppercase tracking-wider text-gray-400">
+              <span className="text-xs font-serif uppercase tracking-wider text-gray-300 font-semibold">
                 Choose Your Response
               </span>
-              <span className="text-[10px] text-gray-500">
-                Resource allocation & trade-offs
+              <span className="text-[10px] text-gray-500 font-reading italic">
+                Moral resolve & spiritual trade-offs
               </span>
             </div>
 
@@ -132,30 +135,30 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
                   <button
                     key={i}
                     onClick={() => handleChoiceClick(choice)}
-                    className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 group ${
+                    className={`w-full text-left p-3.5 rounded-xl border transition-all duration-200 group relative overflow-hidden ${
                       isFaith
-                        ? 'bg-gradient-to-r from-amber-950/30 to-card border-gold/40 hover:border-gold hover:shadow-glow'
+                        ? 'bg-gradient-to-r from-amber-950/40 via-card to-card border-gold/50 hover:border-gold hover:shadow-glow'
                         : isImpulsive
-                        ? 'bg-gradient-to-r from-rose-950/20 to-card border-rose-500/20 hover:border-rose-500/50'
+                        ? 'bg-gradient-to-r from-rose-950/30 via-card to-card border-rose-500/30 hover:border-rose-500/60'
                         : isPatience
-                        ? 'bg-gradient-to-r from-teal-950/25 to-card border-teal-500/30 hover:border-teal-400'
-                        : 'bg-gradient-to-r from-blue-950/25 to-card border-blue-500/30 hover:border-blue-400'
+                        ? 'bg-gradient-to-r from-teal-950/35 via-card to-card border-teal-500/40 hover:border-teal-400'
+                        : 'bg-gradient-to-r from-blue-950/35 via-card to-card border-blue-500/40 hover:border-blue-400'
                     }`}
                   >
-                    <div className="flex items-center justify-between mb-1">
-                      <div className="flex items-center space-x-1.5">
-                        <span className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full ${
+                    <div className="flex items-center justify-between mb-1.5">
+                      <div className="flex items-center space-x-2">
+                        <span className={`text-[10px] uppercase tracking-wider font-serif font-semibold px-2 py-0.5 rounded-full ${
                           isFaith
-                            ? 'bg-gold/15 text-gold border border-gold/30'
+                            ? 'bg-gold/20 text-gold border border-gold/40'
                             : isImpulsive
-                            ? 'bg-rose-500/15 text-rose-300 border border-rose-500/30'
+                            ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40'
                             : isPatience
-                            ? 'bg-teal-500/15 text-teal-300 border border-teal-500/30'
-                            : 'bg-blue-500/15 text-blue-300 border border-blue-500/30'
+                            ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40'
+                            : 'bg-blue-500/20 text-blue-300 border border-blue-500/40'
                         }`}>
-                          {choice.archetype}
+                          {isFaith ? '✝ Faith' : isImpulsive ? '⚡ Reaction' : isPatience ? '⏳ Patience' : '👥 Fellowship'}
                         </span>
-                        <span className="text-xs font-semibold text-gray-100 group-hover:text-white">
+                        <span className="text-xs font-serif font-semibold text-gray-100 group-hover:text-white">
                           {choice.label}
                         </span>
                       </div>
@@ -174,7 +177,7 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
                       </div>
                     </div>
 
-                    <p className="text-xs text-gray-400 font-reading leading-relaxed group-hover:text-gray-300">
+                    <p className="text-xs text-gray-300 font-reading leading-relaxed group-hover:text-gray-200">
                       {choice.desc}
                     </p>
                   </button>
@@ -184,31 +187,37 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
           </div>
         </div>
       ) : (
-        /* Reflection & Resolution View */
-        <div className="p-5 rounded-2xl bg-card border border-gold/40 shadow-2xl space-y-4 animate-float-soft">
-          <div className="flex items-center space-x-2 text-gold">
-            <Sparkles size={18} className="animate-spin" style={{ animationDuration: '6s' }} />
-            <span className="font-serif text-xs uppercase tracking-widest font-semibold">
-              The Lesson Sealed
-            </span>
+        /* Reflection & Resolution View - Illuminated Manuscript */
+        <div className="p-5 rounded-2xl illuminated-card border-gold/50 shadow-2xl space-y-4 animate-float-soft">
+          <div className="flex items-center justify-between border-b border-gold/30 pb-2">
+            <div className="flex items-center space-x-2 text-gold">
+              <Sparkles size={16} className="animate-spin text-gold" style={{ animationDuration: '6s' }} />
+              <span className="font-serif text-xs uppercase tracking-widest font-bold">
+                The Crucible Resolved
+              </span>
+            </div>
+            <span className="text-[10px] font-mono text-gold/70">✦ Sealed ✦</span>
           </div>
 
           <div>
-            <h3 className="text-base font-serif font-bold text-gray-100 mb-1">
-              You chose: {selectedChoice?.label}
+            <span className="text-[10px] font-serif uppercase tracking-wider text-gray-400 block mb-0.5">
+              The Path Taken:
+            </span>
+            <h3 className="text-base font-serif font-bold text-amber-200 mb-1">
+              {selectedChoice?.label}
             </h3>
-            <p className="text-xs text-gray-400 font-reading mb-3">
-              {selectedChoice?.desc}
+            <p className="text-xs text-gray-300 font-reading mb-3 italic">
+              "{selectedChoice?.desc}"
             </p>
           </div>
 
-          <div className="p-3.5 rounded-xl bg-black/40 border border-white/10 text-sm font-reading text-gray-200 leading-relaxed italic">
+          <div className="p-4 rounded-xl bg-black/60 border border-gold/25 text-sm font-reading text-gray-100 leading-relaxed italic shadow-inner">
             "{selectedChoice?.reflectionOutcome}"
           </div>
 
           {/* Stat Adjustments Summary */}
           <div className="p-3 rounded-xl bg-secondary/80 border border-white/5 space-y-2">
-            <span className="text-[11px] font-mono text-gray-400 uppercase tracking-wider block">
+            <span className="text-[11px] font-serif text-gold/80 uppercase tracking-wider block">
               Spiritual & Emotional Shifts
             </span>
             <div className="flex flex-wrap gap-2 text-xs font-mono">
@@ -253,10 +262,10 @@ export const EncounterView: React.FC<EncounterViewProps> = ({
                   onOpenJournalForChallenge(challenge, selectedChoice.reflectionOutcome);
                 }
               }}
-              className="w-full py-2.5 px-4 rounded-xl bg-secondary hover:bg-card border border-white/10 text-xs font-medium text-gray-200 flex items-center justify-center space-x-2 transition-colors"
+              className="w-full py-2.5 px-4 rounded-xl bg-secondary hover:bg-card border border-gold/30 text-xs font-medium text-gray-200 flex items-center justify-center space-x-2 transition-colors"
             >
               <PenTool size={13} className="text-gold" />
-              <span>Record Thoughts in Wayfarer's Journal (+5 WI)</span>
+              <span>Record Reflections in Wayfarer's Journal (+5 WI)</span>
             </button>
 
             <button
