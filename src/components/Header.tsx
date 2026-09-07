@@ -51,15 +51,28 @@ export const Header: React.FC<HeaderProps> = ({
           </button>
 
           <button
-            onClick={onToggleSound}
-            className={`p-1.5 rounded-full border transition-colors ${
+            onClick={() => {
+              audio.unlockContext();
+              onToggleSound();
+            }}
+            className={`px-2 py-1 rounded-full border text-xs flex items-center space-x-1 transition-colors ${
               soundEnabled
-                ? 'bg-white/10 border-white/20 text-gold hover:bg-white/15'
+                ? 'bg-gold/15 border-gold/40 text-gold hover:bg-gold/25'
                 : 'bg-white/5 border-white/10 text-gray-400 hover:bg-white/10'
             }`}
             title={soundEnabled ? 'Mute Sound' : 'Enable Sound'}
           >
-            {soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}
+            {soundEnabled ? (
+              <>
+                <Volume2 size={14} className="animate-pulse" />
+                <span className="text-[10px] font-mono font-semibold">ON</span>
+              </>
+            ) : (
+              <>
+                <VolumeX size={14} />
+                <span className="text-[10px] font-mono">OFF</span>
+              </>
+            )}
           </button>
         </div>
       </div>

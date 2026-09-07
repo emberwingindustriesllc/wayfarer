@@ -186,7 +186,10 @@ export default function WayfarerPage() {
     const next = !soundEnabled;
     setSoundEnabled(next);
     audio.soundEnabled = next;
-    if (next) audio.playChime(528, 1.5);
+    if (next) {
+      audio.unlockContext();
+      audio.playZeldaSecret();
+    }
   };
 
   const currentArc = arcs[currentArcId] || Object.values(arcs)[0];
@@ -241,6 +244,8 @@ export default function WayfarerPage() {
             completedChallenges={completedChallenges}
             onStartChallenge={(ch) => setActiveChallenge(ch)}
             onOpenRestArea={() => setActiveTab('rest')}
+            faith={stats.faith}
+            wisdom={stats.wisdom}
           />
         ) : activeTab === 'inventory' ? (
           <InventoryView
