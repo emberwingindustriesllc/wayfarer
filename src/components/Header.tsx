@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { GameStats } from '../types/game';
-import { Volume2, VolumeX, Shield, BookOpen, Clock, Users, Sparkles, Heart } from 'lucide-react';
+import { Volume2, VolumeX, Shield, BookOpen, Clock, Users, Sparkles, Heart, Check } from 'lucide-react';
 import { audio } from '../utils/audio';
 
 interface HeaderProps {
@@ -31,9 +31,15 @@ export const Header: React.FC<HeaderProps> = ({
             🕊️
           </div>
           <div>
-            <h1 className="font-serif text-sm font-semibold tracking-wider text-gold">
-              THE WAYFARER
-            </h1>
+            <div className="flex items-center space-x-1.5">
+              <h1 className="font-serif text-sm font-semibold tracking-wider text-gold">
+                THE WAYFARER
+              </h1>
+              <span className="inline-flex items-center space-x-1 text-[8px] font-mono text-emerald-400 bg-emerald-500/15 px-1.5 py-0.5 rounded-full border border-emerald-500/30" title="Your pilgrimage progress and journal entries are automatically saved and synced">
+                <Check size={8} />
+                <span>Saved</span>
+              </span>
+            </div>
             <p className="text-[10px] text-gray-400 font-sans tracking-wide truncate max-w-[170px]">
               {currentArcTitle}
             </p>

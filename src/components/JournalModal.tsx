@@ -52,7 +52,7 @@ export const JournalModal: React.FC<JournalModalProps> = ({
                 Wayfarer's Journal
               </h3>
               <p className="text-[10px] text-gray-400">
-                Reflections nourish the soul (+5 Wisdom, +3 Community)
+                Entries are permanently saved & synced to Supabase (+5 WI, +3 CO)
               </p>
             </div>
           </div>

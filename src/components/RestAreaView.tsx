@@ -48,11 +48,13 @@ export const RestAreaView: React.FC<RestAreaViewProps> = ({
   useEffect(() => {
     if (activeTab === 'campfire') {
       audio.toggleCampfire(true);
-    } else {
-      audio.toggleCampfire(false);
+    } else if (activeTab === 'well') {
+      audio.toggleWellWater(true);
+    } else if (activeTab === 'circle') {
+      audio.toggleCircleChimes(true);
     }
     return () => {
-      audio.toggleCampfire(false);
+      audio.stopAllAmbience();
     };
   }, [activeTab]);
 

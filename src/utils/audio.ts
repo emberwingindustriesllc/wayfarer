@@ -1,16 +1,16 @@
-// The Wayfarer's Journey - Procedural Audio & Soundscape Engine
-// Realistic Campfire with Crackling Embers, Chiptune Jingles, and Sacred Singing Bowls.
+// The Wayfarer's Journey - Advanced Procedural Audio Engine
+// Realistic Campfire with dual-snap wood pops, Living Water Well drips, and Sacred Sanctuary Chimes.
 
 class AudioManager {
   private ctx: AudioContext | null = null;
   public soundEnabled: boolean = true;
   public isUnlocked: boolean = false;
 
-  // Campfire generator nodes
-  private campfireSource: AudioBufferSourceNode | null = null;
-  private campfireGain: GainNode | null = null;
-  private crackleInterval: NodeJS.Timeout | null = null;
-  public isCampfirePlaying: boolean = false;
+  // Active ambient sound nodes
+  private activeAmbientType: 'campfire' | 'well' | 'circle' | null = null;
+  private ambientGain: GainNode | null = null;
+  private ambientSources: (AudioNode | number)[] = [];
+  private ambientInterval: NodeJS.Timeout | null = null;
 
   constructor() {
     if (typeof window !== 'undefined') {
@@ -60,90 +60,215 @@ class AudioManager {
     }
   }
 
+  // Stop any currently playing sanctuary ambient audio cleanly
+  public stopAllAmbience() {
+    const ctx = this.getContext();
+    if (this.ambientInterval) {
+      clearInterval(this.ambientInterval);
+      this.ambientInterval = null;
+    }
+
+    if (this.ambientGain && ctx) {
+      try {
+        this.ambientGain.gain.setValueAtTime(this.ambientGain.gain.value, ctx.currentTime);
+        this.ambientGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.4);
+      } catch {}
+    }
+
+    setTimeout(() => {
+      this.ambientSources.forEach(node => {
+        if (typeof node === 'object' && node && 'stop' in node) {
+          try { (node as AudioScheduledSourceNode).stop(); } catch {}
+          try { (node as AudioNode).disconnect(); } catch {}
+        }
+      });
+      this.ambientSources = [];
+      this.ambientGain = null;
+      this.activeAmbientType = null;
+    }, 450);
+  }
+
   // ========================================================
-  // REALISTIC PROCEDURAL CAMPFIRE SOUND GENERATOR
-  // Emulates burning wood hiss, warm draft, and random ember crackles/pops
+  // 1. REALISTIC CAMPFIRE SOUNDSCAPE
+  // Deep warm combustion rumble + dual-snap timber pops + ember sizzle
   // ========================================================
   public toggleCampfire(enable: boolean) {
+    if (!enable || !this.soundEnabled) {
+      if (this.activeAmbientType === 'campfire') this.stopAllAmbience();
+      return;
+    }
+    if (this.activeAmbientType === 'campfire') return;
+
+    this.stopAllAmbience();
     const ctx = this.getContext();
     if (!ctx) return;
 
-    if (!enable || !this.soundEnabled) {
-      // Fade out campfire
-      if (this.campfireGain) {
-        try {
-          this.campfireGain.gain.setValueAtTime(this.campfireGain.gain.value, ctx.currentTime);
-          this.campfireGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.6);
-          setTimeout(() => {
-            if (this.campfireSource) {
-              try { this.campfireSource.stop(); } catch {}
-              this.campfireSource.disconnect();
-              this.campfireSource = null;
-            }
-          }, 650);
-        } catch {}
-      }
-      if (this.crackleInterval) {
-        clearInterval(this.crackleInterval);
-        this.crackleInterval = null;
-      }
-      this.isCampfirePlaying = false;
-      return;
-    }
-
-    if (this.isCampfirePlaying) return;
-
     try {
+      this.activeAmbientType = 'campfire';
       const now = ctx.currentTime;
-      const bufferSize = 2 * ctx.sampleRate; // 2 seconds of loopable fire bed noise
-      const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-      const output = noiseBuffer.getChannelData(0);
+      this.ambientGain = ctx.createGain();
+      this.ambientGain.gain.setValueAtTime(0.001, now);
+      this.ambientGain.gain.linearRampToValueAtTime(0.28, now + 1.0);
+      this.ambientGain.connect(ctx.destination);
 
-      // Generate warm brown/pink noise for roaring coals
+      // --- Layer A: Warm Low Rumble of Burning Wood Charcoal ---
+      const bufferSize = 3 * ctx.sampleRate;
+      const rumbleBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const rumbleData = rumbleBuffer.getChannelData(0);
       let lastOut = 0.0;
       for (let i = 0; i < bufferSize; i++) {
         const white = Math.random() * 2 - 1;
-        output[i] = (lastOut + (0.02 * white)) / 1.02;
-        lastOut = output[i];
-        output[i] *= 3.5; // Gain compensation
+        lastOut = (lastOut + 0.018 * white) / 1.018;
+        rumbleData[i] = lastOut * 4.0;
       }
+      const rumbleSource = ctx.createBufferSource();
+      rumbleSource.buffer = rumbleBuffer;
+      rumbleSource.loop = true;
 
-      this.campfireSource = ctx.createBufferSource();
-      this.campfireSource.buffer = noiseBuffer;
-      this.campfireSource.loop = true;
+      const lowpass = ctx.createBiquadFilter();
+      lowpass.type = 'lowpass';
+      lowpass.frequency.setValueAtTime(260, now);
 
-      // Filter: warm low-pass for wood combustion hum + gentle bandpass for hiss
-      const lowFilter = ctx.createBiquadFilter();
-      lowFilter.type = 'lowpass';
-      lowFilter.frequency.setValueAtTime(380, now);
+      rumbleSource.connect(lowpass);
+      lowpass.connect(this.ambientGain);
+      rumbleSource.start(now);
+      this.ambientSources.push(rumbleSource);
 
-      this.campfireGain = ctx.createGain();
-      this.campfireGain.gain.setValueAtTime(0.001, now);
-      this.campfireGain.gain.linearRampToValueAtTime(0.25, now + 1.2);
+      // --- Layer B: Soft Ember Hiss ---
+      const hissBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const hissData = hissBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        hissData[i] = (Math.random() * 2 - 1) * 0.015;
+      }
+      const hissSource = ctx.createBufferSource();
+      hissSource.buffer = hissBuffer;
+      hissSource.loop = true;
 
-      this.campfireSource.connect(lowFilter);
-      lowFilter.connect(this.campfireGain);
-      this.campfireGain.connect(ctx.destination);
-      this.campfireSource.start(now);
+      const bandpass = ctx.createBiquadFilter();
+      bandpass.type = 'bandpass';
+      bandpass.frequency.setValueAtTime(1400, now);
+      bandpass.Q.setValueAtTime(1.5, now);
 
-      // Random Wood Pops & Cracking Embers
-      const scheduleCrackle = () => {
-        if (!this.isCampfirePlaying || !this.soundEnabled) return;
-        this.playWoodPop();
-        // Next pop in random 80ms - 450ms
-        const nextTime = 80 + Math.random() * 370;
-        this.crackleInterval = setTimeout(scheduleCrackle, nextTime) as unknown as NodeJS.Timeout;
+      hissSource.connect(bandpass);
+      bandpass.connect(this.ambientGain);
+      hissSource.start(now);
+      this.ambientSources.push(hissSource);
+
+      // --- Layer C: Randomized Realistic Wood Cracks & Timber Snaps ---
+      const triggerWoodPop = () => {
+        if (this.activeAmbientType !== 'campfire' || !this.soundEnabled) return;
+        this.playOrganicWoodPop();
+        // Realistic spacing: random between 60ms and 380ms
+        const nextTime = 70 + Math.random() * 310;
+        this.ambientInterval = setTimeout(triggerWoodPop, nextTime) as unknown as NodeJS.Timeout;
       };
-
-      this.isCampfirePlaying = true;
-      scheduleCrackle();
+      triggerWoodPop();
     } catch (e) {
-      console.warn('Campfire audio error:', e);
+      console.warn('Campfire error:', e);
     }
   }
 
-  // Realistic individual wood snap / spark pop
-  private playWoodPop() {
+  // Dual-snap organic wood pop
+  private playOrganicWoodPop() {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    try {
+      const now = ctx.currentTime;
+
+      // 1. High frequency snap (bark bursting)
+      const snapOsc = ctx.createOscillator();
+      const snapGain = ctx.createGain();
+      const snapFreq = 1200 + Math.random() * 1600;
+      snapOsc.type = 'triangle';
+      snapOsc.frequency.setValueAtTime(snapFreq, now);
+      snapOsc.frequency.exponentialRampToValueAtTime(180, now + 0.025);
+
+      snapGain.gain.setValueAtTime(0.04 + Math.random() * 0.12, now);
+      snapGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.028);
+
+      snapOsc.connect(snapGain);
+      snapGain.connect(ctx.destination);
+      snapOsc.start(now);
+      snapOsc.stop(now + 0.03);
+
+      // 2. Low hollow thud (wood log resonance)
+      if (Math.random() > 0.3) {
+        const thudOsc = ctx.createOscillator();
+        const thudGain = ctx.createGain();
+        thudOsc.type = 'sine';
+        thudOsc.frequency.setValueAtTime(120 + Math.random() * 60, now + 0.005);
+        thudOsc.frequency.exponentialRampToValueAtTime(45, now + 0.06);
+
+        thudGain.gain.setValueAtTime(0.08 + Math.random() * 0.08, now + 0.005);
+        thudGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.065);
+
+        thudOsc.connect(thudGain);
+        thudGain.connect(ctx.destination);
+        thudOsc.start(now + 0.005);
+        thudOsc.stop(now + 0.07);
+      }
+    } catch {}
+  }
+
+  // ========================================================
+  // 2. SCRIPTURE WELL: LIVING WATER SPRING & DRIPS
+  // Tranquil subterranean spring + resonant water drops into the stone well
+  // ========================================================
+  public toggleWellWater(enable: boolean) {
+    if (!enable || !this.soundEnabled) {
+      if (this.activeAmbientType === 'well') this.stopAllAmbience();
+      return;
+    }
+    if (this.activeAmbientType === 'well') return;
+
+    this.stopAllAmbience();
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    try {
+      this.activeAmbientType = 'well';
+      const now = ctx.currentTime;
+      this.ambientGain = ctx.createGain();
+      this.ambientGain.gain.setValueAtTime(0.001, now);
+      this.ambientGain.gain.linearRampToValueAtTime(0.22, now + 1.0);
+      this.ambientGain.connect(ctx.destination);
+
+      // Gentle flowing spring background trickle (filtered pink noise)
+      const bufferSize = 3 * ctx.sampleRate;
+      const brookBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const brookData = brookBuffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        brookData[i] = (Math.random() * 2 - 1) * 0.02;
+      }
+      const brookSource = ctx.createBufferSource();
+      brookSource.buffer = brookBuffer;
+      brookSource.loop = true;
+
+      const waterFilter = ctx.createBiquadFilter();
+      waterFilter.type = 'bandpass';
+      waterFilter.frequency.setValueAtTime(800, now);
+      waterFilter.Q.setValueAtTime(2.0, now);
+
+      brookSource.connect(waterFilter);
+      waterFilter.connect(this.ambientGain);
+      brookSource.start(now);
+      this.ambientSources.push(brookSource);
+
+      // Rhythmic resonant stone well water drops
+      const triggerWellDrop = () => {
+        if (this.activeAmbientType !== 'well' || !this.soundEnabled) return;
+        this.playWaterDrop();
+        const nextDrop = 350 + Math.random() * 750;
+        this.ambientInterval = setTimeout(triggerWellDrop, nextDrop) as unknown as NodeJS.Timeout;
+      };
+      triggerWellDrop();
+    } catch (e) {
+      console.warn('Well water error:', e);
+    }
+  }
+
+  // Individual acoustic water drop ("plink / plop" into well)
+  private playWaterDrop() {
     const ctx = this.getContext();
     if (!ctx) return;
     try {
@@ -151,25 +276,85 @@ class AudioManager {
       const osc = ctx.createOscillator();
       const gain = ctx.createGain();
 
-      // Sharp frequency drop mimicking wood snapping
-      const startFreq = 800 + Math.random() * 1200;
-      osc.type = Math.random() > 0.4 ? 'triangle' : 'sawtooth';
-      osc.frequency.setValueAtTime(startFreq, now);
-      osc.frequency.exponentialRampToValueAtTime(60 + Math.random() * 80, now + 0.035);
+      // Pitch sweep mimicking water droplet tension
+      const baseFreq = 650 + Math.random() * 550;
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(baseFreq, now);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.6, now + 0.04);
+      osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.8, now + 0.1);
 
-      const popVolume = 0.04 + Math.random() * 0.12;
-      gain.gain.setValueAtTime(popVolume, now);
-      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.038);
+      gain.gain.setValueAtTime(0.08 + Math.random() * 0.06, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.12);
 
       osc.connect(gain);
       gain.connect(ctx.destination);
       osc.start(now);
-      osc.stop(now + 0.04);
+      osc.stop(now + 0.13);
     } catch {}
   }
 
   // ========================================================
-  // FOOTSTEPS & RETRO OVERWORLD SOUNDS
+  // 3. SUPPORT CIRCLE: SACRED WIND CHIMES & CHORD DRONE
+  // Peaceful meditation bell chimes drifting gently in sacred fellowship
+  // ========================================================
+  public toggleCircleChimes(enable: boolean) {
+    if (!enable || !this.soundEnabled) {
+      if (this.activeAmbientType === 'circle') this.stopAllAmbience();
+      return;
+    }
+    if (this.activeAmbientType === 'circle') return;
+
+    this.stopAllAmbience();
+    const ctx = this.getContext();
+    if (!ctx) return;
+
+    try {
+      this.activeAmbientType = 'circle';
+      const now = ctx.currentTime;
+      this.ambientGain = ctx.createGain();
+      this.ambientGain.gain.setValueAtTime(0.001, now);
+      this.ambientGain.gain.linearRampToValueAtTime(0.2, now + 1.2);
+      this.ambientGain.connect(ctx.destination);
+
+      // Sacred Wind Chimes Pentatonic notes: C5, D5, E5, G5, A5, C6 (528Hz tuning)
+      const chimeNotes = [523.25, 587.33, 659.25, 783.99, 880.00, 1046.50];
+
+      const triggerChime = () => {
+        if (this.activeAmbientType !== 'circle' || !this.soundEnabled) return;
+        const note = chimeNotes[Math.floor(Math.random() * chimeNotes.length)];
+        this.playWindChimeNote(note);
+        const nextChime = 600 + Math.random() * 1400;
+        this.ambientInterval = setTimeout(triggerChime, nextChime) as unknown as NodeJS.Timeout;
+      };
+      triggerChime();
+    } catch (e) {
+      console.warn('Circle chimes error:', e);
+    }
+  }
+
+  private playWindChimeNote(freq: number) {
+    const ctx = this.getContext();
+    if (!ctx) return;
+    try {
+      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now);
+
+      gain.gain.setValueAtTime(0.08, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.start(now);
+      osc.stop(now + 1.9);
+    } catch {}
+  }
+
+  // ========================================================
+  // FOOTSTEPS, JINGLES & SACRED BOWLS
   // ========================================================
   public playFootstep() {
     if (!this.soundEnabled) return;
@@ -203,7 +388,7 @@ class AudioManager {
 
     try {
       const now = ctx.currentTime;
-      const notes = [261.63, 329.63, 392.00, 523.25]; // C4, E4, G4, C5
+      const notes = [261.63, 329.63, 392.00, 523.25];
       notes.forEach((freq, idx) => {
         const osc = ctx.createOscillator();
         const gain = ctx.createGain();
@@ -248,9 +433,6 @@ class AudioManager {
     } catch {}
   }
 
-  // ========================================================
-  // SACRED SINGING BOWLS & CHIMES
-  // ========================================================
   public playChime(freq: number = 432, duration: number = 2.5) {
     if (!this.soundEnabled) return;
     const ctx = this.getContext();
